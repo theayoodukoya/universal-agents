@@ -241,6 +241,42 @@ cp universal-agents/.gemini/* .gemini/
 
 ## Using Agents
 
+### Auto-Dispatch: The AI Picks the Right Agent For You
+
+Once installed, **you don't need to remember any agent names**. Just describe your task naturally and the AI automatically selects the best agent.
+
+```
+You: "This checkout flow is slow, can you optimize it?"
+
+AI: [Agent: engineering-database-optimizer — detected performance/query optimization task]
+    Let me analyze your checkout flow...
+```
+
+Auto-dispatch works across Claude Code, Gemini CLI, Cursor, GitHub Copilot, and Codex. Each tool's config file contains instructions that tell the AI to read `agents-manifest.json`, match your task to the best agent, and load it — all before responding.
+
+**How it decides:**
+
+1. **Project context** — It checks what's in your project (package.json deps, file types, config files) to narrow the field. A Next.js project auto-weights frontend agents; a project with `.sql` files boosts database agents.
+2. **Task keywords** — Your request is matched against each agent's keywords, description, and category.
+3. **Confidence check** — If there's a clear winner, it loads that agent and proceeds. If it's ambiguous, it asks you to pick between the top candidates.
+
+**For complex tasks, it chains agents automatically:**
+
+```
+You: "Build me a user authentication system"
+
+AI: [Chain: build_feature]
+    Step 1 — [Agent: engineering-backend-architect] Designing the auth architecture...
+    Step 2 — [Agent: engineering-security-engineer] Reviewing for vulnerabilities...
+    Step 3 — [Agent: engineering-code-reviewer] Final quality check...
+```
+
+Pre-built chains include: `build_feature`, `code_review`, `new_api`, `launch_prep`, `design_to_code`, `shopify_theme`, `mobile_app`, and `data_pipeline`.
+
+**You can always override** by naming an agent directly — `@engineering-code-reviewer` skips auto-dispatch and uses that agent immediately.
+
+### Manual Agent Selection (Still Works)
+
 Once installed, reference them by name in your tool's chat interface.
 
 ### Claude Code (VS Code Extension)
@@ -612,11 +648,19 @@ Output:
 ```
 ✓ 122 agents found in agents/
 ✓ All agents have YAML frontmatter
-✓ .claude/ configuration is valid
-✓ .github/ agents are readable
+✓ No hardcoded paths found
 ✓ AGENTS.md registry is complete
-✓ Installation is healthy
+✓ agents-manifest.json is in sync (122 agents)
+✓ All validations passed!
 ```
+
+**Rebuild the auto-dispatch manifest** after adding or removing agents:
+
+```bash
+./validate.sh --rebuild
+```
+
+This regenerates `agents-manifest.json` from all agent files' YAML frontmatter. You never need to edit the manifest by hand.
 
 ### `./validate.ps1` (Windows PowerShell)
 

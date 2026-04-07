@@ -11,7 +11,16 @@ set -e
 
 AGENTS_DIR="./agents"
 AGENTS_MD="./AGENTS.md"
+MANIFEST="./agents-manifest.json"
 EXIT_CODE=0
+REBUILD=false
+
+# Parse args
+for arg in "$@"; do
+  case $arg in
+    --rebuild) REBUILD=true ;;
+  esac
+done
 
 # Colors for output
 RED='\033[0;31m'
@@ -183,6 +192,104 @@ else
     else
         error "Agent count mismatch: AGENTS.md claims $CLAIMED_COUNT but found $AGENT_COUNT actual files"
     fi
+fi
+echo ""
+
+# ===== Check 5: Manifest validation =====
+echo -e "${BLUE}Check 5: Checking agents-manifest.json${NC}"
+
+if [ "$REBUILD" = true ]; then
+    echo -e "${YELLOW}Rebuilding agents-manifest.json from agent files...${NC}"
+
+    if ! command -v python3 &>/dev/null; then
+        error "python3 is required for --rebuild but not found"
+    else
+        python3 << 'PYEOF'
+import os, json, re
+
+agents_dir = "agents"
+agents_list = []
+categories = {}
+
+stop_words = {"a","an","the","and","or","for","in","on","of","to","with","is","are","that","this",
+"it","as","by","from","at","be","has","have","was","were","been","do","does","did","will","would",
+"can","could","should","may","might","shall","about","into","through","during","before","after",
+"above","below","between","under","over","out","up","down","off","then","than","very","just","also",
+"not","no","but","if","so","its","they","them","their","all","each","every","both","few","more",
+"most","other","some","such","only","same","too","own","any","new","old","one","two","you","your",
+"who","what","when","where","how","which","why","these","those","being","using","based","across",
+"ensure","ensures","well","including","while","whether","making","create","creates","build","builds",
+"design","designs","focus","focuses","help","helps","provide","provides","work","works","use","uses",
+"best","key","way","make","take","need","like","get","got","set","let","run","put","come","go",
+"see","try","keep","give","find","tell","think","know","want","look","good","great","high","low",
+"via","etc","able","actually","operating","entire","leader","process","specialist","expert","architect",
+"engineer","developer","manager","agent"}
+
+for fname in sorted(os.listdir(agents_dir)):
+    if not fname.endswith(".md"):
+        continue
+    filepath = os.path.join(agents_dir, fname)
+    with open(filepath, "r") as f:
+        content = f.read()
+    fm_match = re.match(r'^---\s*\n(.*?)\n---', content, re.DOTALL)
+    if not fm_match:
+        continue
+    fm = fm_match.group(1)
+    name = desc = emoji = ""
+    for line in fm.split("\n"):
+        line = line.strip()
+        if line.startswith("name:"): name = line[5:].strip().strip('"').strip("'")
+        elif line.startswith("description:"): desc = line[12:].strip().strip('"').strip("'")
+        elif line.startswith("emoji:"): emoji = line[6:].strip().strip('"').strip("'")
+    agent_id = fname.replace(".md", "")
+    category = agent_id.split("-")[0]
+    text = f"{name} {desc}".lower()
+    words = re.findall(r'[a-z][a-z]+', text)
+    keywords = sorted(set(w for w in words if len(w) > 3 and w not in stop_words))[:12]
+    agents_list.append({"id": agent_id, "name": name, "emoji": emoji, "desc": desc, "cat": category, "kw": keywords})
+    if category not in categories: categories[category] = []
+    categories[category].append(agent_id)
+
+# Load existing manifest to preserve context_detection and chains
+existing = {}
+if os.path.exists("agents-manifest.json"):
+    with open("agents-manifest.json", "r") as f:
+        existing = json.load(f)
+
+manifest = {
+    "version": "1.0",
+    "generated": "auto",
+    "note": "Auto-generated from agents/*.md frontmatter. Do not edit manually. Run validate.sh --rebuild to regenerate.",
+    "dispatch": existing.get("dispatch", {
+        "enabled": True, "confidence_threshold": 0.6, "announce_selection": True,
+        "max_agents_per_task": 3, "fallback": "Ask user to pick when confidence is below threshold"
+    }),
+    "agents": agents_list,
+    "categories": categories,
+    "context_detection": existing.get("context_detection", {}),
+    "chains": existing.get("chains", {})
+}
+
+with open("agents-manifest.json", "w") as f:
+    json.dump(manifest, f, indent=2)
+print(f"REBUILT: {len(agents_list)} agents, {len(categories)} categories")
+PYEOF
+        if [ $? -eq 0 ]; then
+            success "agents-manifest.json rebuilt successfully"
+        else
+            error "Failed to rebuild agents-manifest.json"
+        fi
+    fi
+elif [ -f "$MANIFEST" ]; then
+    # Verify manifest matches agent count
+    MANIFEST_COUNT=$(python3 -c "import json; m=json.load(open('$MANIFEST')); print(len(m.get('agents',[])))" 2>/dev/null || echo "0")
+    if [ "$MANIFEST_COUNT" -eq "$AGENT_COUNT" ]; then
+        success "agents-manifest.json is in sync ($MANIFEST_COUNT agents)"
+    else
+        error "agents-manifest.json has $MANIFEST_COUNT agents but $AGENT_COUNT agent files exist. Run: ./validate.sh --rebuild"
+    fi
+else
+    warning "agents-manifest.json not found. Run: ./validate.sh --rebuild"
 fi
 echo ""
 

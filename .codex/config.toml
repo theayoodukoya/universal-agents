@@ -10,17 +10,19 @@ version = "1.0.0"
 # Codex will automatically read these files as project documentation
 # and make them available to Claude for context
 project_doc_fallback_filenames = [
-  "AGENTS.md",        # Main agent registry
-  "CLAUDE.md",        # Claude/Codex specific instructions
-  "CODEX.md",         # Codex CLI instructions
-  "GEMINI.md",        # Gemini instructions
-  "README.md",        # Project overview
+  "AGENTS.md",              # Main agent registry
+  "CLAUDE.md",              # Claude/Codex specific instructions (includes auto-dispatch rules)
+  "agents-manifest.json",   # Machine-readable agent index for auto-dispatch
+  "CODEX.md",               # Codex CLI instructions
+  "GEMINI.md",              # Gemini instructions
+  "README.md",              # Project overview
 ]
 
 # Include agent files in documentation context
 include_patterns = [
-  "agents/*.md",      # All individual agent files
-  ".github/agents/*.md",  # Custom agent definitions
+  "agents/*.md",            # All individual agent files
+  ".github/agents/*.md",    # Custom agent definitions
+  "agents-manifest.json",   # Auto-dispatch manifest
 ]
 
 [agents]

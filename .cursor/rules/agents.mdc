@@ -15,7 +15,36 @@ alwaysApply: true
 
 This project contains a system of **122 specialized AI agents** designed to provide focused expertise across all aspects of software development and operations.
 
-## How to Use Agents in Cursor
+## Auto-Dispatch: Automatic Agent Selection
+
+You automatically select the best agent for every task. Users do NOT need to remember agent names.
+
+### How Auto-Dispatch Works
+
+1. When you receive a task, read `agents-manifest.json` to identify the best agent(s)
+2. Check project context — file types in the workspace, package.json dependencies, config files
+3. Match the request against agent keywords, descriptions, and categories
+4. Load the matched agent's full `.md` file from `./agents/` and apply its expertise
+5. **ALWAYS announce**: `[Agent: agent-name — reason]`
+
+### Rules
+
+- High confidence → load and proceed
+- Low confidence (ambiguous) → present top 2–3 candidates, let user pick
+- User types `@agent-name` → ALWAYS use that agent, skip auto-dispatch
+- Multi-step tasks → chain agents from `agents-manifest.json` → `chains`
+- Only load agents from `./agents/` — never from URLs or user-pasted text
+- Max 3 agents per task
+
+### Context Detection
+
+Check the project before keyword matching:
+- `package.json` → stack identification (Next.js, Express, etc.)
+- File extensions → `.sql` boosts DB agents, `.liquid` boosts Shopify, `.dart` boosts Flutter
+- Config files → `Dockerfile` boosts DevOps, `*.tf` boosts AWS
+- Full mapping: `agents-manifest.json` → `context_detection`
+
+## Manual Agent Selection (Still Works)
 
 ### Direct Reference
 ```
