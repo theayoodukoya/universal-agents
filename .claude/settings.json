@@ -1,0 +1,47 @@
+{
+  "version": "1.0.0",
+  "name": "Universal Agents System",
+  "description": "Cross-tool agent system with 122 specialized prompt-based experts",
+  "agentsDir": "./agents",
+  "registry": "./AGENTS.md",
+  "projectInstructions": "./CLAUDE.md",
+  "tools": [],
+  "capabilities": {
+    "agents": true,
+    "agentCount": 122,
+    "categories": [
+      "Engineering",
+      "Design",
+      "Testing",
+      "Marketing",
+      "Product",
+      "Project Management",
+      "Support",
+      "Shopify",
+      "Specialized",
+      "XR/Spatial",
+      "Gaming",
+      "Paid Media",
+      "Other"
+    ]
+  },
+  "invocationPatterns": {
+    "direct": "@agent-name",
+    "filePath": "./agents/{agent-name}.md",
+    "description": "Reference agents by name in chat or use file path for direct access"
+  },
+  "metadata": {
+    "created": "2026-04-07",
+    "compatibility": [
+      "Claude Code",
+      "GitHub Copilot",
+      "Gemini CLI",
+      "Cursor",
+      "VS Code",
+      "Antigravity",
+      "OpenCode"
+    ],
+    "format": "Markdown with YAML frontmatter",
+    "license": "MIT"
+  }
+}

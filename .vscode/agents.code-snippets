@@ -1,0 +1,617 @@
+{
+  "Agent: accounts-payable-agent": {
+    "prefix": ["@accounts-payable-agent", "agent:accounts", "agent:payment"],
+    "body": ["@accounts-payable-agent $1"],
+    "description": "Autonomous payment processing specialist that executes vendor..."
+  },
+  "Agent: agentic-identity-trust": {
+    "prefix": ["@agentic-identity-trust", "agent:identity", "agent:auth"],
+    "body": ["@agentic-identity-trust $1"],
+    "description": "Designs identity, authentication, and trust verification system..."
+  },
+  "Agent: agents-orchestrator": {
+    "prefix": ["@agents-orchestrator", "agent:orchestrator", "agent:pipeline"],
+    "body": ["@agents-orchestrator $1"],
+    "description": "Autonomous pipeline manager that orchestrates the entire develo..."
+  },
+  "Agent: automation-governance-architect": {
+    "prefix": ["@automation-governance-architect", "agent:governance", "agent:automation"],
+    "body": ["@automation-governance-architect $1"],
+    "description": "Governance-first architect for business automations (n8n-first)..."
+  },
+  "Agent: blockchain-security-auditor": {
+    "prefix": ["@blockchain-security-auditor", "agent:blockchain", "agent:security"],
+    "body": ["@blockchain-security-auditor $1"],
+    "description": "Expert smart contract security auditor specializing in vulnerabil..."
+  },
+  "Agent: compliance-auditor": {
+    "prefix": ["@compliance-auditor", "agent:compliance", "agent:audit"],
+    "body": ["@compliance-auditor $1"],
+    "description": "Expert technical compliance auditor specializing in SOC 2, ISO 2..."
+  },
+  "Agent: data-consolidation-agent": {
+    "prefix": ["@data-consolidation-agent", "agent:data", "agent:reporting"],
+    "body": ["@data-consolidation-agent $1"],
+    "description": "AI agent that consolidates extracted sales data into live repor..."
+  },
+  "Agent: design-brand-guardian": {
+    "prefix": ["@design-brand-guardian", "agent:brand", "agent:design"],
+    "body": ["@design-brand-guardian $1"],
+    "description": "Expert brand strategist and guardian specializing in brand iden..."
+  },
+  "Agent: design-figma-to-code-engineer": {
+    "prefix": ["@design-figma-to-code-engineer", "agent:figma", "agent:code"],
+    "body": ["@design-figma-to-code-engineer $1"],
+    "description": "Expert in translating pixel-perfect Figma designs to productio..."
+  },
+  "Agent: design-image-prompt-engineer": {
+    "prefix": ["@design-image-prompt-engineer", "agent:image", "agent:prompt"],
+    "body": ["@design-image-prompt-engineer $1"],
+    "description": "Expert photography prompt engineer specializing in crafting de..."
+  },
+  "Agent: design-inclusive-visuals-specialist": {
+    "prefix": ["@design-inclusive-visuals-specialist", "agent:inclusive", "agent:visual"],
+    "body": ["@design-inclusive-visuals-specialist $1"],
+    "description": "Representation expert who defeats systemic AI biases to generat..."
+  },
+  "Agent: design-ui-designer": {
+    "prefix": ["@design-ui-designer", "agent:ui", "agent:design"],
+    "body": ["@design-ui-designer $1"],
+    "description": "Expert UI designer specializing in visual design systems, compo..."
+  },
+  "Agent: design-ux-architect": {
+    "prefix": ["@design-ux-architect", "agent:ux", "agent:design"],
+    "body": ["@design-ux-architect $1"],
+    "description": "Technical architecture and UX specialist who provides developers..."
+  },
+  "Agent: design-ux-researcher": {
+    "prefix": ["@design-ux-researcher", "agent:research", "agent:ux"],
+    "body": ["@design-ux-researcher $1"],
+    "description": "Expert user experience researcher specializing in user behavior..."
+  },
+  "Agent: design-visual-storyteller": {
+    "prefix": ["@design-visual-storyteller", "agent:storytelling", "agent:visual"],
+    "body": ["@design-visual-storyteller $1"],
+    "description": "Expert visual communication specialist focused on creating comp..."
+  },
+  "Agent: design-whimsy-injector": {
+    "prefix": ["@design-whimsy-injector", "agent:whimsy", "agent:design"],
+    "body": ["@design-whimsy-injector $1"],
+    "description": "Expert creative specialist focused on adding personality, deligh..."
+  },
+  "Agent: engineering-ai-data-remediation-engineer": {
+    "prefix": ["@engineering-ai-data-remediation-engineer", "agent:remediation", "agent:data"],
+    "body": ["@engineering-ai-data-remediation-engineer $1"],
+    "description": "Specialist in self-healing data pipelines — uses air-gapped loc..."
+  },
+  "Agent: engineering-ai-engineer": {
+    "prefix": ["@engineering-ai-engineer", "agent:ai", "agent:ml"],
+    "body": ["@engineering-ai-engineer $1"],
+    "description": "Expert AI/ML engineer specializing in machine learning model de..."
+  },
+  "Agent: engineering-autonomous-optimization-architect": {
+    "prefix": ["@engineering-autonomous-optimization-architect", "agent:optimization", "agent:autonomous"],
+    "body": ["@engineering-autonomous-optimization-architect $1"],
+    "description": "Intelligent system governor that continuously shadow-tests APIs..."
+  },
+  "Agent: engineering-aws-ecosystem-architect": {
+    "prefix": ["@engineering-aws-ecosystem-architect", "agent:aws", "agent:cloud"],
+    "body": ["@engineering-aws-ecosystem-architect $1"],
+    "description": "Serverless and cloud infrastructure expert covering Lambda, API..."
+  },
+  "Agent: engineering-backend-architect": {
+    "prefix": ["@engineering-backend-architect", "agent:backend", "agent:architecture"],
+    "body": ["@engineering-backend-architect $1"],
+    "description": "Senior backend architect specializing in scalable system design,..."
+  },
+  "Agent: engineering-backend-patterns-architect": {
+    "prefix": ["@engineering-backend-patterns-architect", "agent:patterns", "agent:backend"],
+    "body": ["@engineering-backend-patterns-architect $1"],
+    "description": "Expert in advanced backend design patterns - CQRS, Event Sourcin..."
+  },
+  "Agent: engineering-bigquery-analyst": {
+    "prefix": ["@engineering-bigquery-analyst", "agent:bigquery", "agent:analytics"],
+    "body": ["@engineering-bigquery-analyst $1"],
+    "description": "BigQuery optimization expert with focus on cost efficiency, BQML..."
+  },
+  "Agent: engineering-ci-cd-pipeline-architect": {
+    "prefix": ["@engineering-ci-cd-pipeline-architect", "agent:cicd", "agent:pipeline"],
+    "body": ["@engineering-ci-cd-pipeline-architect $1"],
+    "description": "Expert in GitHub Actions, multi-stage pipelines, deployment str..."
+  },
+  "Agent: engineering-code-reviewer": {
+    "prefix": ["@engineering-code-reviewer", "agent:review", "agent:code"],
+    "body": ["@engineering-code-reviewer $1"],
+    "description": "Expert code reviewer who provides constructive, actionable feedb..."
+  },
+  "Agent: engineering-data-engineer": {
+    "prefix": ["@engineering-data-engineer", "agent:data", "agent:etl"],
+    "body": ["@engineering-data-engineer $1"],
+    "description": "Expert data engineer specializing in building reliable data pip..."
+  },
+  "Agent: engineering-database-optimizer": {
+    "prefix": ["@engineering-database-optimizer", "agent:database", "agent:optimization"],
+    "body": ["@engineering-database-optimizer $1"],
+    "description": "Expert database specialist focusing on schema design, query opti..."
+  },
+  "Agent: engineering-devops-automator": {
+    "prefix": ["@engineering-devops-automator", "agent:devops", "agent:automation"],
+    "body": ["@engineering-devops-automator $1"],
+    "description": "Expert DevOps engineer specializing in infrastructure automation..."
+  },
+  "Agent: engineering-e2e-testing-specialist": {
+    "prefix": ["@engineering-e2e-testing-specialist", "agent:testing", "agent:qa"],
+    "body": ["@engineering-e2e-testing-specialist $1"],
+    "description": "End-to-end testing expert with Playwright focus, test architect..."
+  },
+  "Agent: engineering-embedded-firmware-engineer": {
+    "prefix": ["@engineering-embedded-firmware-engineer", "agent:embedded", "agent:firmware"],
+    "body": ["@engineering-embedded-firmware-engineer $1"],
+    "description": "Specialist in bare-metal and RTOS firmware - ESP32/ESP-IDF, Plat..."
+  },
+  "Agent: engineering-flutter-developer": {
+    "prefix": ["@engineering-flutter-developer", "agent:flutter", "agent:mobile"],
+    "body": ["@engineering-flutter-developer $1"],
+    "description": "Expert in Flutter/Dart with Material 3, Riverpod state manageme..."
+  },
+  "Agent: engineering-frontend-developer": {
+    "prefix": ["@engineering-frontend-developer", "agent:frontend", "agent:web"],
+    "body": ["@engineering-frontend-developer $1"],
+    "description": "Expert frontend developer specializing in modern web technologi..."
+  },
+  "Agent: engineering-git-workflow-master": {
+    "prefix": ["@engineering-git-workflow-master", "agent:git", "agent:workflow"],
+    "body": ["@engineering-git-workflow-master $1"],
+    "description": "Expert in Git workflows, branching strategies, and version cont..."
+  },
+  "Agent: engineering-incident-response-commander": {
+    "prefix": ["@engineering-incident-response-commander", "agent:incident", "agent:response"],
+    "body": ["@engineering-incident-response-commander $1"],
+    "description": "Expert incident commander specializing in production incident ma..."
+  },
+  "Agent: engineering-mobile-app-builder": {
+    "prefix": ["@engineering-mobile-app-builder", "agent:mobile", "agent:app"],
+    "body": ["@engineering-mobile-app-builder $1"],
+    "description": "Specialized mobile application developer with expertise in nativ..."
+  },
+  "Agent: engineering-nextjs-specialist": {
+    "prefix": ["@engineering-nextjs-specialist", "agent:nextjs", "agent:nextjs"],
+    "body": ["@engineering-nextjs-specialist $1"],
+    "description": "Expert in Next.js 14/15 App Router, server components, data fetc..."
+  },
+  "Agent: engineering-rapid-prototyper": {
+    "prefix": ["@engineering-rapid-prototyper", "agent:prototyper", "agent:mvp"],
+    "body": ["@engineering-rapid-prototyper $1"],
+    "description": "Specialized in ultra-fast proof-of-concept development and MVP c..."
+  },
+  "Agent: engineering-react-native-developer": {
+    "prefix": ["@engineering-react-native-developer", "agent:react-native", "agent:mobile"],
+    "body": ["@engineering-react-native-developer $1"],
+    "description": "Expert in React Native with Expo, New Architecture, performance..."
+  },
+  "Agent: engineering-security-engineer": {
+    "prefix": ["@engineering-security-engineer", "agent:security", "agent:appsec"],
+    "body": ["@engineering-security-engineer $1"],
+    "description": "Expert application security engineer specializing in threat mode..."
+  },
+  "Agent: engineering-semantic-accessibility-specialist": {
+    "prefix": ["@engineering-semantic-accessibility-specialist", "agent:accessibility", "agent:a11y"],
+    "body": ["@engineering-semantic-accessibility-specialist $1"],
+    "description": "Expert in accessible implementation - semantic HTML, ARIA author..."
+  },
+  "Agent: engineering-senior-developer": {
+    "prefix": ["@engineering-senior-developer", "agent:senior", "agent:laravel"],
+    "body": ["@engineering-senior-developer $1"],
+    "description": "Premium implementation specialist - Masters Laravel/Livewire/Flu..."
+  },
+  "Agent: engineering-shopify-liquid-expert": {
+    "prefix": ["@engineering-shopify-liquid-expert", "agent:shopify", "agent:liquid"],
+    "body": ["@engineering-shopify-liquid-expert $1"],
+    "description": "Expert in Liquid templating, Online Store 2.0, theme architectu..."
+  },
+  "Agent: engineering-software-architect": {
+    "prefix": ["@engineering-software-architect", "agent:architecture", "agent:design"],
+    "body": ["@engineering-software-architect $1"],
+    "description": "Expert software architect specializing in system design, domain-..."
+  },
+  "Agent: engineering-solidity-smart-contract-engineer": {
+    "prefix": ["@engineering-solidity-smart-contract-engineer", "agent:solidity", "agent:web3"],
+    "body": ["@engineering-solidity-smart-contract-engineer $1"],
+    "description": "Expert Solidity developer specializing in EVM smart contract arc..."
+  },
+  "Agent: engineering-sre": {
+    "prefix": ["@engineering-sre", "agent:sre", "agent:reliability"],
+    "body": ["@engineering-sre $1"],
+    "description": "Expert site reliability engineer specializing in SLOs, error bud..."
+  },
+  "Agent: engineering-technical-writer": {
+    "prefix": ["@engineering-technical-writer", "agent:docs", "agent:writing"],
+    "body": ["@engineering-technical-writer $1"],
+    "description": "Expert technical writer specializing in developer documentation..."
+  },
+  "Agent: engineering-threat-detection-engineer": {
+    "prefix": ["@engineering-threat-detection-engineer", "agent:threat", "agent:security"],
+    "body": ["@engineering-threat-detection-engineer $1"],
+    "description": "Expert detection engineer specializing in SIEM rule development..."
+  },
+  "Agent: game-audio-engineer": {
+    "prefix": ["@game-audio-engineer", "agent:audio", "agent:game"],
+    "body": ["@game-audio-engineer $1"],
+    "description": "Interactive audio specialist - Masters FMOD/Wwise integration, a..."
+  },
+  "Agent: game-designer": {
+    "prefix": ["@game-designer", "agent:game", "agent:design"],
+    "body": ["@game-designer $1"],
+    "description": "Systems and mechanics architect - Masters GDD authorship, player..."
+  },
+  "Agent: identity-graph-operator": {
+    "prefix": ["@identity-graph-operator", "agent:graph", "agent:identity"],
+    "body": ["@identity-graph-operator $1"],
+    "description": "Operates a shared identity graph that multiple AI agents resolve..."
+  },
+  "Agent: level-designer": {
+    "prefix": ["@level-designer", "agent:level", "agent:game"],
+    "body": ["@level-designer $1"],
+    "description": "Spatial storytelling and flow specialist - Masters layout theory..."
+  },
+  "Agent: lsp-index-engineer": {
+    "prefix": ["@lsp-index-engineer", "agent:lsp", "agent:indexing"],
+    "body": ["@lsp-index-engineer $1"],
+    "description": "Language Server Protocol specialist building unified code intell..."
+  },
+  "Agent: macos-spatial-metal-engineer": {
+    "prefix": ["@macos-spatial-metal-engineer", "agent:metal", "agent:spatial"],
+    "body": ["@macos-spatial-metal-engineer $1"],
+    "description": "Native Swift and Metal specialist building high-performance 3D r..."
+  },
+  "Agent: marketing-ai-citation-strategist": {
+    "prefix": ["@marketing-ai-citation-strategist", "agent:seo", "agent:marketing"],
+    "body": ["@marketing-ai-citation-strategist $1"],
+    "description": "Expert in AI recommendation engine optimization (AEO/GEO) — audit..."
+  },
+  "Agent: marketing-app-store-optimizer": {
+    "prefix": ["@marketing-app-store-optimizer", "agent:aso", "agent:marketing"],
+    "body": ["@marketing-app-store-optimizer $1"],
+    "description": "Expert app store marketing specialist focused on App Store Optim..."
+  },
+  "Agent: marketing-book-co-author": {
+    "prefix": ["@marketing-book-co-author", "agent:content", "agent:marketing"],
+    "body": ["@marketing-book-co-author $1"],
+    "description": "Strategic thought-leadership book collaborator for founders, exp..."
+  },
+  "Agent: marketing-carousel-growth-engine": {
+    "prefix": ["@marketing-carousel-growth-engine", "agent:social", "agent:growth"],
+    "body": ["@marketing-carousel-growth-engine $1"],
+    "description": "Autonomous TikTok and Instagram carousel generation specialist. A..."
+  },
+  "Agent: marketing-content-creator": {
+    "prefix": ["@marketing-content-creator", "agent:content", "agent:marketing"],
+    "body": ["@marketing-content-creator $1"],
+    "description": "Expert content strategist and creator for multi-platform campaign..."
+  },
+  "Agent: marketing-cross-border-ecommerce": {
+    "prefix": ["@marketing-cross-border-ecommerce", "agent:ecommerce", "agent:marketing"],
+    "body": ["@marketing-cross-border-ecommerce $1"],
+    "description": "Full-funnel cross-border e-commerce strategist covering Amazon, S..."
+  },
+  "Agent: marketing-growth-hacker": {
+    "prefix": ["@marketing-growth-hacker", "agent:growth", "agent:marketing"],
+    "body": ["@marketing-growth-hacker $1"],
+    "description": "Expert growth strategist specializing in rapid user acquisition ..."
+  },
+  "Agent: marketing-instagram-curator": {
+    "prefix": ["@marketing-instagram-curator", "agent:instagram", "agent:social"],
+    "body": ["@marketing-instagram-curator $1"],
+    "description": "Expert Instagram marketing specialist focused on visual storytel..."
+  },
+  "Agent: marketing-linkedin-content-creator": {
+    "prefix": ["@marketing-linkedin-content-creator", "agent:linkedin", "agent:social"],
+    "body": ["@marketing-linkedin-content-creator $1"],
+    "description": "Expert LinkedIn content strategist focused on thought leadership..."
+  },
+  "Agent: marketing-reddit-community-builder": {
+    "prefix": ["@marketing-reddit-community-builder", "agent:reddit", "agent:social"],
+    "body": ["@marketing-reddit-community-builder $1"],
+    "description": "Expert Reddit marketing specialist focused on authentic community..."
+  },
+  "Agent: marketing-seo-specialist": {
+    "prefix": ["@marketing-seo-specialist", "agent:seo", "agent:marketing"],
+    "body": ["@marketing-seo-specialist $1"],
+    "description": "Expert search engine optimization strategist specializing in tech..."
+  },
+  "Agent: marketing-short-video-editing-coach": {
+    "prefix": ["@marketing-short-video-editing-coach", "agent:video", "agent:editing"],
+    "body": ["@marketing-short-video-editing-coach $1"],
+    "description": "Hands-on short-video editing coach covering the full post-product..."
+  },
+  "Agent: marketing-social-media-strategist": {
+    "prefix": ["@marketing-social-media-strategist", "agent:social", "agent:marketing"],
+    "body": ["@marketing-social-media-strategist $1"],
+    "description": "Expert social media strategist for LinkedIn, Twitter, and profes..."
+  },
+  "Agent: marketing-tiktok-strategist": {
+    "prefix": ["@marketing-tiktok-strategist", "agent:tiktok", "agent:social"],
+    "body": ["@marketing-tiktok-strategist $1"],
+    "description": "Expert TikTok marketing specialist focused on viral content creati..."
+  },
+  "Agent: marketing-twitter-engager": {
+    "prefix": ["@marketing-twitter-engager", "agent:twitter", "agent:social"],
+    "body": ["@marketing-twitter-engager $1"],
+    "description": "Expert Twitter marketing specialist focused on real-time engageme..."
+  },
+  "Agent: narrative-designer": {
+    "prefix": ["@narrative-designer", "agent:narrative", "agent:game"],
+    "body": ["@narrative-designer $1"],
+    "description": "Story systems and dialogue architect - Masters GDD-aligned narra..."
+  },
+  "Agent: paid-media-auditor": {
+    "prefix": ["@paid-media-auditor", "agent:ads", "agent:paid"],
+    "body": ["@paid-media-auditor $1"],
+    "description": "Comprehensive paid media auditor who systematically evaluates Goo..."
+  },
+  "Agent: paid-media-creative-strategist": {
+    "prefix": ["@paid-media-creative-strategist", "agent:creative", "agent:paid"],
+    "body": ["@paid-media-creative-strategist $1"],
+    "description": "Paid media creative specialist focused on ad copywriting, RSA opt..."
+  },
+  "Agent: paid-media-paid-social-strategist": {
+    "prefix": ["@paid-media-paid-social-strategist", "agent:social", "agent:paid"],
+    "body": ["@paid-media-paid-social-strategist $1"],
+    "description": "Cross-platform paid social advertising specialist covering Meta ..."
+  },
+  "Agent: paid-media-ppc-strategist": {
+    "prefix": ["@paid-media-ppc-strategist", "agent:ppc", "agent:paid"],
+    "body": ["@paid-media-ppc-strategist $1"],
+    "description": "Senior paid media strategist specializing in large-scale search,..."
+  },
+  "Agent: paid-media-programmatic-buyer": {
+    "prefix": ["@paid-media-programmatic-buyer", "agent:programmatic", "agent:paid"],
+    "body": ["@paid-media-programmatic-buyer $1"],
+    "description": "Display advertising and programmatic media buying specialist cov..."
+  },
+  "Agent: paid-media-search-query-analyst": {
+    "prefix": ["@paid-media-search-query-analyst", "agent:search", "agent:paid"],
+    "body": ["@paid-media-search-query-analyst $1"],
+    "description": "Specialist in search term analysis, negative keyword architecture..."
+  },
+  "Agent: paid-media-tracking-specialist": {
+    "prefix": ["@paid-media-tracking-specialist", "agent:tracking", "agent:paid"],
+    "body": ["@paid-media-tracking-specialist $1"],
+    "description": "Expert in conversion tracking architecture, tag management, and a..."
+  },
+  "Agent: product-behavioral-nudge-engine": {
+    "prefix": ["@product-behavioral-nudge-engine", "agent:behavior", "agent:product"],
+    "body": ["@product-behavioral-nudge-engine $1"],
+    "description": "Behavioral psychology specialist that adapts software interaction..."
+  },
+  "Agent: product-feedback-synthesizer": {
+    "prefix": ["@product-feedback-synthesizer", "agent:feedback", "agent:product"],
+    "body": ["@product-feedback-synthesizer $1"],
+    "description": "Expert in collecting, analyzing, and synthesizing user feedback f..."
+  },
+  "Agent: product-ideation-brainstorm-architect": {
+    "prefix": ["@product-ideation-brainstorm-architect", "agent:ideation", "agent:product"],
+    "body": ["@product-ideation-brainstorm-architect $1"],
+    "description": "Expert in design thinking, product strategy frameworks, and evide..."
+  },
+  "Agent: product-manager": {
+    "prefix": ["@product-manager", "agent:pm", "agent:product"],
+    "body": ["@product-manager $1"],
+    "description": "Holistic product leader who owns the full product lifecycle — fro..."
+  },
+  "Agent: product-sprint-prioritizer": {
+    "prefix": ["@product-sprint-prioritizer", "agent:sprint", "agent:product"],
+    "body": ["@product-sprint-prioritizer $1"],
+    "description": "Expert product manager specializing in agile sprint planning, fea..."
+  },
+  "Agent: product-trend-researcher": {
+    "prefix": ["@product-trend-researcher", "agent:trend", "agent:product"],
+    "body": ["@product-trend-researcher $1"],
+    "description": "Expert market intelligence analyst specializing in identifying em..."
+  },
+  "Agent: project-management-experiment-tracker": {
+    "prefix": ["@project-management-experiment-tracker", "agent:experiment", "agent:pm"],
+    "body": ["@project-management-experiment-tracker $1"],
+    "description": "Expert project manager specializing in experiment design, executi..."
+  },
+  "Agent: project-management-jira-workflow-steward": {
+    "prefix": ["@project-management-jira-workflow-steward", "agent:jira", "agent:pm"],
+    "body": ["@project-management-jira-workflow-steward $1"],
+    "description": "Expert delivery operations specialist who enforces Jira-linked Gi..."
+  },
+  "Agent: project-management-project-shepherd": {
+    "prefix": ["@project-management-project-shepherd", "agent:shepherd", "agent:pm"],
+    "body": ["@project-management-project-shepherd $1"],
+    "description": "Expert project manager specializing in cross-functional project c..."
+  },
+  "Agent: project-management-studio-operations": {
+    "prefix": ["@project-management-studio-operations", "agent:operations", "agent:pm"],
+    "body": ["@project-management-studio-operations $1"],
+    "description": "Expert operations manager specializing in day-to-day studio effic..."
+  },
+  "Agent: project-management-studio-producer": {
+    "prefix": ["@project-management-studio-producer", "agent:producer", "agent:pm"],
+    "body": ["@project-management-studio-producer $1"],
+    "description": "Senior strategic leader specializing in high-level creative and t..."
+  },
+  "Agent: project-manager-senior": {
+    "prefix": ["@project-manager-senior", "agent:pm", "agent:senior"],
+    "body": ["@project-manager-senior $1"],
+    "description": "Converts specs to tasks and remembers previous projects. Focused o..."
+  },
+  "Agent: report-distribution-agent": {
+    "prefix": ["@report-distribution-agent", "agent:reporting", "agent:sales"],
+    "body": ["@report-distribution-agent $1"],
+    "description": "AI agent that automates distribution of consolidated sales report..."
+  },
+  "Agent: sales-data-extraction-agent": {
+    "prefix": ["@sales-data-extraction-agent", "agent:sales", "agent:data"],
+    "body": ["@sales-data-extraction-agent $1"],
+    "description": "AI agent specialized in monitoring Excel files and extracting key..."
+  },
+  "Agent: shopify-impulse-section-steward": {
+    "prefix": ["@shopify-impulse-section-steward", "agent:shopify", "agent:section"],
+    "body": ["@shopify-impulse-section-steward $1"],
+    "description": "Specialist in custom Shopify section architecture for Impulse, f..."
+  },
+  "Agent: shopify-impulse-theme-regression-reviewer": {
+    "prefix": ["@shopify-impulse-theme-regression-reviewer", "agent:shopify", "agent:regression"],
+    "body": ["@shopify-impulse-theme-regression-reviewer $1"],
+    "description": "Regression-focused reviewer for Shopify Impulse themes, covering L..."
+  },
+  "Agent: specialized-cultural-intelligence-strategist": {
+    "prefix": ["@specialized-cultural-intelligence-strategist", "agent:cultural", "agent:strategy"],
+    "body": ["@specialized-cultural-intelligence-strategist $1"],
+    "description": "CQ specialist that detects invisible exclusion, researches global ..."
+  },
+  "Agent: specialized-developer-advocate": {
+    "prefix": ["@specialized-developer-advocate", "agent:devrel", "agent:dx"],
+    "body": ["@specialized-developer-advocate $1"],
+    "description": "Expert developer advocate specializing in building developer comm..."
+  },
+  "Agent: specialized-document-generator": {
+    "prefix": ["@specialized-document-generator", "agent:docs", "agent:documents"],
+    "body": ["@specialized-document-generator $1"],
+    "description": "Expert document creation specialist who generates professional P..."
+  },
+  "Agent: specialized-french-consulting-market": {
+    "prefix": ["@specialized-french-consulting-market", "agent:france", "agent:consulting"],
+    "body": ["@specialized-french-consulting-market $1"],
+    "description": "Navigate the French ESN/SI freelance ecosystem — margin models, p..."
+  },
+  "Agent: specialized-korean-business-navigator": {
+    "prefix": ["@specialized-korean-business-navigator", "agent:korea", "agent:business"],
+    "body": ["@specialized-korean-business-navigator $1"],
+    "description": "Korean business culture for foreign professionals — 품의 decision..."
+  },
+  "Agent: specialized-mcp-builder": {
+    "prefix": ["@specialized-mcp-builder", "agent:mcp", "agent:protocol"],
+    "body": ["@specialized-mcp-builder $1"],
+    "description": "Expert Model Context Protocol developer who designs, builds, and ..."
+  },
+  "Agent: specialized-model-qa": {
+    "prefix": ["@specialized-model-qa", "agent:qa", "agent:ml"],
+    "body": ["@specialized-model-qa $1"],
+    "description": "Independent model QA expert who audits ML and statistical models..."
+  },
+  "Agent: specialized-salesforce-architect": {
+    "prefix": ["@specialized-salesforce-architect", "agent:salesforce", "agent:crm"],
+    "body": ["@specialized-salesforce-architect $1"],
+    "description": "Solution architecture for Salesforce platform — multi-cloud desig..."
+  },
+  "Agent: specialized-workflow-architect": {
+    "prefix": ["@specialized-workflow-architect", "agent:workflow", "agent:architecture"],
+    "body": ["@specialized-workflow-architect $1"],
+    "description": "Workflow design specialist who maps complete workflow trees for ev..."
+  },
+  "Agent: support-analytics-reporter": {
+    "prefix": ["@support-analytics-reporter", "agent:analytics", "agent:support"],
+    "body": ["@support-analytics-reporter $1"],
+    "description": "Expert data analyst transforming raw data into actionable busines..."
+  },
+  "Agent: support-executive-summary-generator": {
+    "prefix": ["@support-executive-summary-generator", "agent:executive", "agent:support"],
+    "body": ["@support-executive-summary-generator $1"],
+    "description": "Consultant-grade AI specialist trained to think and communicate l..."
+  },
+  "Agent: support-finance-tracker": {
+    "prefix": ["@support-finance-tracker", "agent:finance", "agent:support"],
+    "body": ["@support-finance-tracker $1"],
+    "description": "Expert financial analyst and controller specializing in financial..."
+  },
+  "Agent: support-infrastructure-maintainer": {
+    "prefix": ["@support-infrastructure-maintainer", "agent:infra", "agent:support"],
+    "body": ["@support-infrastructure-maintainer $1"],
+    "description": "Expert infrastructure specialist focused on system reliability, p..."
+  },
+  "Agent: support-legal-compliance-checker": {
+    "prefix": ["@support-legal-compliance-checker", "agent:legal", "agent:compliance"],
+    "body": ["@support-legal-compliance-checker $1"],
+    "description": "Expert legal and compliance specialist ensuring business operation..."
+  },
+  "Agent: support-support-responder": {
+    "prefix": ["@support-support-responder", "agent:customer", "agent:support"],
+    "body": ["@support-support-responder $1"],
+    "description": "Expert customer support specialist delivering exceptional custome..."
+  },
+  "Agent: technical-artist": {
+    "prefix": ["@technical-artist", "agent:art", "agent:game"],
+    "body": ["@technical-artist $1"],
+    "description": "Art-to-engine pipeline specialist - Masters shaders, VFX systems,..."
+  },
+  "Agent: terminal-integration-specialist": {
+    "prefix": ["@terminal-integration-specialist", "agent:terminal", "agent:ui"],
+    "body": ["@terminal-integration-specialist $1"],
+    "description": "Terminal emulation, text rendering optimization, and SwiftTerm in..."
+  },
+  "Agent: testing-accessibility-auditor": {
+    "prefix": ["@testing-accessibility-auditor", "agent:a11y", "agent:testing"],
+    "body": ["@testing-accessibility-auditor $1"],
+    "description": "Expert accessibility specialist who audits interfaces against WCA..."
+  },
+  "Agent: testing-api-tester": {
+    "prefix": ["@testing-api-tester", "agent:api", "agent:testing"],
+    "body": ["@testing-api-tester $1"],
+    "description": "Expert API testing specialist focused on comprehensive API valida..."
+  },
+  "Agent: testing-evidence-collector": {
+    "prefix": ["@testing-evidence-collector", "agent:qa", "agent:testing"],
+    "body": ["@testing-evidence-collector $1"],
+    "description": "Screenshot-obsessed, fantasy-allergic QA specialist - Default to f..."
+  },
+  "Agent: testing-performance-benchmarker": {
+    "prefix": ["@testing-performance-benchmarker", "agent:performance", "agent:testing"],
+    "body": ["@testing-performance-benchmarker $1"],
+    "description": "Expert performance testing and optimization specialist focused on..."
+  },
+  "Agent: testing-reality-checker": {
+    "prefix": ["@testing-reality-checker", "agent:qa", "agent:testing"],
+    "body": ["@testing-reality-checker $1"],
+    "description": "Stops fantasy approvals, evidence-based certification - Default to..."
+  },
+  "Agent: testing-test-results-analyzer": {
+    "prefix": ["@testing-test-results-analyzer", "agent:analysis", "agent:testing"],
+    "body": ["@testing-test-results-analyzer $1"],
+    "description": "Expert test analysis specialist focused on comprehensive test res..."
+  },
+  "Agent: testing-tool-evaluator": {
+    "prefix": ["@testing-tool-evaluator", "agent:tools", "agent:testing"],
+    "body": ["@testing-tool-evaluator $1"],
+    "description": "Expert technology assessment specialist focused on evaluating, te..."
+  },
+  "Agent: testing-workflow-optimizer": {
+    "prefix": ["@testing-workflow-optimizer", "agent:workflow", "agent:testing"],
+    "body": ["@testing-workflow-optimizer $1"],
+    "description": "Expert process improvement specialist focused on analyzing, optim..."
+  },
+  "Agent: visionos-spatial-engineer": {
+    "prefix": ["@visionos-spatial-engineer", "agent:visionos", "agent:spatial"],
+    "body": ["@visionos-spatial-engineer $1"],
+    "description": "Native visionOS spatial computing, SwiftUI volumetric interfaces,..."
+  },
+  "Agent: xr-cockpit-interaction-specialist": {
+    "prefix": ["@xr-cockpit-interaction-specialist", "agent:xr", "agent:interaction"],
+    "body": ["@xr-cockpit-interaction-specialist $1"],
+    "description": "Specialist in designing and developing immersive cockpit-based con..."
+  },
+  "Agent: xr-immersive-developer": {
+    "prefix": ["@xr-immersive-developer", "agent:xr", "agent:webxr"],
+    "body": ["@xr-immersive-developer $1"],
+    "description": "Expert WebXR and immersive technology developer with specializatio..."
+  },
+  "Agent: xr-interface-architect": {
+    "prefix": ["@xr-interface-architect", "agent:xr", "agent:interface"],
+    "body": ["@xr-interface-architect $1"],
+    "description": "Spatial interaction designer and interface strategist for immersiv..."
+  },
+  "Agent: zk-steward": {
+    "prefix": ["@zk-steward", "agent:zk", "agent:zero-knowledge"],
+    "body": ["@zk-steward $1"],
+    "description": "Zero-knowledge proof specialist"
+  },
+  "Agent Picker": {
+    "prefix": ["@agent", "@pick", "agent:pick"],
+    "body": ["@${1|accounts-payable-agent,agentic-identity-trust,agents-orchestrator,automation-governance-architect,blockchain-security-auditor,compliance-auditor,data-consolidation-agent,design-brand-guardian,design-figma-to-code-engineer,design-image-prompt-engineer,design-inclusive-visuals-specialist,design-ui-designer,design-ux-architect,design-ux-researcher,design-visual-storyteller,design-whimsy-injector,engineering-ai-data-remediation-engineer,engineering-ai-engineer,engineering-autonomous-optimization-architect,engineering-aws-ecosystem-architect,engineering-backend-architect,engineering-backend-patterns-architect,engineering-bigquery-analyst,engineering-ci-cd-pipeline-architect,engineering-code-reviewer,engineering-data-engineer,engineering-database-optimizer,engineering-devops-automator,engineering-e2e-testing-specialist,engineering-embedded-firmware-engineer,engineering-flutter-developer,engineering-frontend-developer,engineering-git-workflow-master,engineering-incident-response-commander,engineering-mobile-app-builder,engineering-nextjs-specialist,engineering-rapid-prototyper,engineering-react-native-developer,engineering-security-engineer,engineering-semantic-accessibility-specialist,engineering-senior-developer,engineering-shopify-liquid-expert,engineering-software-architect,engineering-solidity-smart-contract-engineer,engineering-sre,engineering-technical-writer,engineering-threat-detection-engineer,game-audio-engineer,game-designer,identity-graph-operator,level-designer,lsp-index-engineer,macos-spatial-metal-engineer,marketing-ai-citation-strategist,marketing-app-store-optimizer,marketing-book-co-author,marketing-carousel-growth-engine,marketing-content-creator,marketing-cross-border-ecommerce,marketing-growth-hacker,marketing-instagram-curator,marketing-linkedin-content-creator,marketing-reddit-community-builder,marketing-seo-specialist,marketing-short-video-editing-coach,marketing-social-media-strategist,marketing-tiktok-strategist,marketing-twitter-engager,narrative-designer,paid-media-auditor,paid-media-creative-strategist,paid-media-paid-social-strategist,paid-media-ppc-strategist,paid-media-programmatic-buyer,paid-media-search-query-analyst,paid-media-tracking-specialist,product-behavioral-nudge-engine,product-feedback-synthesizer,product-ideation-brainstorm-architect,product-manager,product-sprint-prioritizer,product-trend-researcher,project-management-experiment-tracker,project-management-jira-workflow-steward,project-management-project-shepherd,project-management-studio-operations,project-management-studio-producer,project-manager-senior,report-distribution-agent,sales-data-extraction-agent,shopify-impulse-section-steward,shopify-impulse-theme-regression-reviewer,specialized-cultural-intelligence-strategist,specialized-developer-advocate,specialized-document-generator,specialized-french-consulting-market,specialized-korean-business-navigator,specialized-mcp-builder,specialized-model-qa,specialized-salesforce-architect,specialized-workflow-architect,support-analytics-reporter,support-executive-summary-generator,support-finance-tracker,support-infrastructure-maintainer,support-legal-compliance-checker,support-support-responder,technical-artist,terminal-integration-specialist,testing-accessibility-auditor,testing-api-tester,testing-evidence-collector,testing-performance-benchmarker,testing-reality-checker,testing-test-results-analyzer,testing-tool-evaluator,testing-workflow-optimizer,visionos-spatial-engineer,xr-cockpit-interaction-specialist,xr-immersive-developer,xr-interface-architect,zk-steward|} $2"],
+    "description": "Pick from all 122 agents"
+  }
+}

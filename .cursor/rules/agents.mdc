@@ -1,0 +1,300 @@
+---
+title: Universal Agents System
+description: 122 specialized AI agents for engineering, design, product, marketing, operations, and more. Reference agents with @agent-name in Cursor to load specialized expertise.
+glob: **/*
+alwaysApply: true
+---
+
+<!--
+  ⚠️  AUTOCOMPLETE PROTECTION: This is the ONLY rule file for agents.
+  Individual agent files live in ./agents/ (not .cursor/rules/).
+  Adding more .mdc files here floods Cursor's @ dropdown.
+-->
+
+# Cursor Agent System Rules
+
+This project contains a system of **122 specialized AI agents** designed to provide focused expertise across all aspects of software development and operations.
+
+## How to Use Agents in Cursor
+
+### Direct Reference
+```
+@agent-name: [your prompt]
+```
+
+**Example:**
+```
+@engineering-code-reviewer: Please review this function for security issues
+```
+
+### In Code Comments
+```python
+# @engineering-security-engineer
+# Review this authentication implementation
+
+def authenticate_user(username, password):
+    # ... implementation
+```
+
+### Via Command Palette
+Search for agent name in Cursor's command palette and select to load agent context.
+
+## Key Engineering Agents
+
+**Code Quality & Architecture:**
+- `@engineering-code-reviewer` — Constructive code reviews (correctness, security, maintainability, performance)
+- `@engineering-senior-developer` — Architecture, mentoring, technical leadership
+- `@engineering-software-architect` — System design and patterns
+- `@engineering-backend-architect` — Backend systems and APIs
+- `@engineering-backend-patterns-architect` — Architectural patterns and SOLID principles
+
+**Web Development:**
+- `@engineering-frontend-developer` — Full-stack web technologies
+- `@engineering-nextjs-specialist` — Next.js and React expertise
+- `@engineering-react-native-developer` — React Native mobile development
+- `@engineering-flutter-developer` — Flutter cross-platform development
+
+**Infrastructure & DevOps:**
+- `@engineering-devops-automator` — Infrastructure automation and tooling
+- `@engineering-ci-cd-pipeline-architect` — CI/CD design and implementation
+- `@engineering-aws-ecosystem-architect` — AWS services and architecture
+- `@engineering-sre` — Site reliability and incident response
+
+**Databases & Performance:**
+- `@engineering-database-optimizer` — Query optimization and schema design
+- `@engineering-bigquery-analyst` — Google BigQuery and data warehousing
+- `@engineering-data-engineer` — Data pipelines and ETL systems
+
+**Security:**
+- `@engineering-security-engineer` — Application security and vulnerability assessment
+- `@engineering-threat-detection-engineer` — Security monitoring and threat detection
+- `@blockchain-security-auditor` — Blockchain security and smart contract audits
+
+**Specialized Tech:**
+- `@engineering-ai-engineer` — LLM integration and AI systems
+- `@engineering-embedded-firmware-engineer` — Embedded systems and firmware
+- `@engineering-git-workflow-master` — Git workflows and version control
+- `@engineering-incident-response-commander` — Incident management and postmortems
+
+## Design & UX Agents
+
+**User Experience:**
+- `@design-ux-architect` — User flows, information architecture, interaction design
+- `@design-ui-designer` — Visual design and interface design
+- `@design-figma-to-code-engineer` — Convert Figma designs to production code
+- `@design-ux-researcher` — User research and usability testing
+
+**Accessibility & Brand:**
+- `@design-inclusive-visuals-specialist` — Accessible and inclusive design
+- `@design-brand-guardian` — Brand consistency and guidelines
+- `@design-visual-storyteller` — Visual narratives and communication
+
+## Testing Agents
+
+**Testing Strategy & Quality:**
+- `@testing-accessibility-auditor` — Accessibility compliance and WCAG audits
+- `@testing-api-tester` — API testing and integration testing
+- `@testing-e2e-testing-specialist` — End-to-end testing design
+- `@testing-performance-benchmarker` — Performance measurement and optimization
+- `@testing-test-results-analyzer` — Test result analysis and debugging
+
+## Product & Strategy Agents
+
+- `@product-manager` — Product strategy and roadmaps
+- `@product-sprint-prioritizer` — Feature prioritization (RICE, MoSCoW, etc.)
+- `@product-feedback-synthesizer` — Customer feedback analysis
+- `@product-trend-researcher` — Market and technology trends
+
+## Marketing Agents
+
+- `@marketing-content-creator` — Content production
+- `@marketing-growth-hacker` — Growth strategies
+- `@marketing-seo-specialist` — SEO and organic search
+- `@marketing-social-media-strategist` — Social media strategy
+- `@marketing-app-store-optimizer` — App store optimization (iOS/Android)
+
+## Finding More Agents
+
+View the complete registry:
+
+```
+AGENTS.md          # Full list of 122 agents with categories
+agents/            # Individual agent files
+CLAUDE.md          # Detailed usage instructions
+```
+
+All agents are organized by domain:
+- Engineering (26)
+- Design (9)
+- Testing (8)
+- Product (6)
+- Marketing (13)
+- Project Management (5)
+- Support & Operations (7)
+- Specialized (16)
+- XR & Spatial (6)
+- Gaming (5)
+- Paid Media (7)
+- Shopify (3)
+- Other (2)
+
+## How Agents Work
+
+Each agent is a specialized prompt that includes:
+
+1. **Identity & Personality** — Consistent communication style (mentor, partner, expert, etc.)
+2. **Core Mission** — Primary objectives and focus areas
+3. **Expertise** — Deep knowledge in their domain
+4. **Methodology** — Specific processes and frameworks (SOLID, accessibility standards, RICE, etc.)
+5. **Edge Cases** — How to handle complex or ambiguous scenarios
+6. **Rules & Constraints** — What they will and won't do
+
+## Best Practices in Cursor
+
+### 1. Be Specific
+Include relevant code, designs, or requirements:
+
+```
+@engineering-code-reviewer
+
+Here's a React component that needs review:
+[paste code]
+
+Main concerns: performance with large lists, accessibility
+```
+
+### 2. Provide Context
+Help the agent understand the bigger picture:
+
+```
+@engineering-backend-architect
+
+We're building a real-time notification system for 1M+ users.
+Requirements:
+- Sub-second latency
+- 99.99% uptime
+- PostgreSQL + Redis available
+
+Current design: [describe]
+```
+
+### 3. Follow the Methodology
+Each agent has specific processes. Ask about them:
+
+```
+@design-ux-architect
+
+Help me design the checkout flow using your UX process.
+Current pain points: [list]
+User research insights: [findings]
+```
+
+### 4. Iterate
+Ask follow-up questions to dig deeper:
+
+```
+@engineering-database-optimizer
+
+What about this index strategy?
+[paste current indexes]
+
+Can we optimize further for this query pattern?
+[paste slow queries]
+```
+
+## Common Cursor Workflows
+
+### Code Review & Refactor
+```
+1. @engineering-code-reviewer → Review code quality
+2. @engineering-security-engineer → Review security
+3. @testing-accessibility-auditor → Check accessibility
+4. @engineering-senior-developer → Get architectural feedback
+```
+
+### Build a Feature
+```
+1. @product-manager → Define requirements
+2. @design-ux-architect → Design the user experience
+3. @engineering-backend-architect → Design backend
+4. @engineering-frontend-developer → Build frontend
+5. @testing-api-tester → Test APIs
+6. @testing-e2e-testing-specialist → Design tests
+```
+
+### Optimize Performance
+```
+1. @testing-performance-benchmarker → Measure baseline
+2. @engineering-database-optimizer → Optimize database
+3. @engineering-backend-architect → Optimize architecture
+4. @engineering-frontend-developer → Optimize frontend
+5. @testing-performance-benchmarker → Verify improvements
+```
+
+### Security Hardening
+```
+1. @engineering-security-engineer → Identify vulnerabilities
+2. @engineering-threat-detection-engineer → Design monitoring
+3. @engineering-code-reviewer → Review security practices
+4. @compliance-auditor → Check compliance
+```
+
+## Settings & Configuration
+
+Cursor automatically loads agents from the `agents/` directory. Configuration:
+
+- **Registry**: `AGENTS.md`
+- **Agents location**: `agents/` directory
+- **Format**: Markdown with YAML frontmatter
+- **Version**: 1.0.0
+- **Total agents**: 122
+
+## Creating Custom Agents
+
+Add a new agent:
+
+1. Create `agents/{category}-{name}.md`
+2. Include YAML frontmatter:
+   ```yaml
+   ---
+   name: Display Name
+   description: What this agent does
+   tools: []
+   emoji: 🎯
+   vibe: Personality description
+   ---
+   ```
+3. Add detailed instructions and system prompt
+4. Update `AGENTS.md` with new entry
+5. Commit and available immediately in Cursor
+
+## Troubleshooting
+
+**Agent not loading:**
+- Use exact agent name from `AGENTS.md`
+- Format: `@agent-name` (lowercase, hyphens)
+- Check `agents/` directory for file existence
+
+**Getting generic responses:**
+- Provide more specific context and requirements
+- Include code examples or design files
+- Ask specific methodology questions
+
+**Need different approach:**
+- Try a different agent (browse `AGENTS.md`)
+- Combine multiple agents for complex tasks
+- Create a custom agent if needed
+
+## For More Information
+
+- **Full agent list**: `AGENTS.md`
+- **Claude Code instructions**: `CLAUDE.md`
+- **Gemini CLI instructions**: `GEMINI.md`
+- **Setup guide**: `README.md`
+- **Individual agents**: Browse `agents/` directory
+
+---
+
+**Last Updated**: 2026-04-07
+**Total Agents**: 122
+**Compatible Tools**: Cursor, Claude Code, GitHub Copilot, Gemini CLI, VS Code, Antigravity, OpenCode

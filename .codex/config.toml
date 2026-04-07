@@ -1,0 +1,70 @@
+# Codex Configuration for Universal Agents System
+# Automatically integrates 122 specialized agents with Claude CLI
+
+[project]
+name = "universal-agents"
+description = "122 specialized AI agents for engineering, design, testing, product, marketing, and operations"
+version = "1.0.0"
+
+[documentation]
+# Codex will automatically read these files as project documentation
+# and make them available to Claude for context
+project_doc_fallback_filenames = [
+  "AGENTS.md",        # Main agent registry
+  "CLAUDE.md",        # Claude/Codex specific instructions
+  "CODEX.md",         # Codex CLI instructions
+  "GEMINI.md",        # Gemini instructions
+  "README.md",        # Project overview
+]
+
+# Include agent files in documentation context
+include_patterns = [
+  "agents/*.md",      # All individual agent files
+  ".github/agents/*.md",  # Custom agent definitions
+]
+
+[agents]
+# Enable agent system
+enabled = true
+
+# Directory containing individual agent files
+agents_directory = "agents"
+
+# Main agent registry file
+registry_file = "AGENTS.md"
+
+# Custom agents directory (GitHub Copilot Custom Agents)
+custom_agents_directory = ".github/agents"
+
+[context]
+# Maximum context window for Codex
+max_context_tokens = 8000
+
+# Include project files automatically
+include_project_files = true
+
+# Prioritize agent documentation
+documentation_priority = "high"
+
+[behavior]
+# Auto-load agents based on user intent
+auto_agent_detection = true
+
+# Allow users to reference agents with @agent-name
+enable_agent_references = true
+
+# Maximum agents to suggest in auto-complete
+max_suggestions = 5
+
+[features]
+# Enable specialized agent routing
+agent_routing = true
+
+# Enable multi-agent workflows
+enable_workflows = true
+
+# Allow custom agent creation
+allow_custom_agents = true
+
+# Store interaction history
+enable_history = true

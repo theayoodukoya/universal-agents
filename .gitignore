@@ -1,0 +1,25 @@
+# Backups from installer
+.universal-agents-backup/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# Empty stub files (sandbox artifacts — safe to ignore)
+debug_cats.sh
+test_agent_pick.sh
+INSTALLATION_COMPLETE.txt
+SCRIPT_USAGE.md
+COMPLETIONS_README.md
+setup.sh
+
+# Don't ignore tool configs — they should be committed
+# !.claude/
+# !.codex/
+# !.github/
+# !.cursor/
