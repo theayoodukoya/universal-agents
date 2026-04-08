@@ -203,19 +203,70 @@ if [ ! -d "$PROJECT_DIR" ]; then
   ok "Created $PROJECT_DIR"
 fi
 
-# For update: use --replace to get latest versions
-if [ "$ACTION" = "update" ]; then
-  MODE="replace"
-  info "Update mode: will replace existing agent files with latest versions"
-  echo ""
-fi
-
 # Clone latest
 info "Cloning universal-agents from ${REPO_URL} (branch: ${BRANCH})..."
 git clone --depth 1 --branch "$BRANCH" "$REPO_URL" "$CLONE_DIR" 2>/dev/null
 ok "Cloned to temporary directory"
 
-# Run the real installer
+if [ "$ACTION" = "update" ]; then
+  # Update mode: only refresh agent .md files, manifest, and scripts
+  # Does NOT re-install tool configs (.cursor, .github, .claude, .vscode, etc.)
+  info "Updating agent files and manifest only (tool configs untouched)..."
+  echo ""
+
+  if [ -z "$DRY_RUN" ]; then
+    # Update agent .md files
+    UPDATED=0
+    for agent_file in "$CLONE_DIR/agents/"*.md; do
+      fname="$(basename "$agent_file")"
+      target="${PROJECT_DIR}/agents/${fname}"
+      mkdir -p "${PROJECT_DIR}/agents"
+      cp "$agent_file" "$target"
+      UPDATED=$((UPDATED + 1))
+    done
+    ok "Updated $UPDATED agent files in agents/"
+
+    # Update manifest
+    if [ -f "$CLONE_DIR/agents-manifest.json" ]; then
+      cp "$CLONE_DIR/agents-manifest.json" "${PROJECT_DIR}/agents-manifest.json"
+      ok "Updated agents-manifest.json"
+    fi
+
+    # Update AGENTS.md registry
+    if [ -f "$CLONE_DIR/AGENTS.md" ]; then
+      cp "$CLONE_DIR/AGENTS.md" "${PROJECT_DIR}/AGENTS.md"
+      ok "Updated AGENTS.md"
+    fi
+
+    # Update scripts
+    for script in agent-pick.sh agent-pick.ps1 agent-pick-fzf-preview.sh validate.sh uninstall.sh; do
+      if [ -f "$CLONE_DIR/$script" ]; then
+        cp "$CLONE_DIR/$script" "${PROJECT_DIR}/$script"
+        chmod +x "${PROJECT_DIR}/$script" 2>/dev/null || true
+      fi
+    done
+    ok "Updated scripts"
+
+    # Update completions
+    if [ -d "$CLONE_DIR/completions" ]; then
+      mkdir -p "${PROJECT_DIR}/completions"
+      cp "$CLONE_DIR/completions/"* "${PROJECT_DIR}/completions/" 2>/dev/null || true
+      ok "Updated completions"
+    fi
+  else
+    info "[DRY RUN] Would update agent files, manifest, and scripts"
+  fi
+
+  echo ""
+  echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  echo -e "${GREEN}${BOLD}Updated!${NC} Agents in ${PROJECT_DIR} are now at the latest version."
+  echo -e "${DIM}Tool configs (.cursor, .github, .claude, etc.) were not changed.${NC}"
+  echo -e "${DIM}To fully re-install everything, run: install-agents --replace${NC}"
+  echo ""
+  exit 0
+fi
+
+# Run the full installer for fresh installs
 info "Running installer → ${PROJECT_DIR}"
 echo ""
 
@@ -225,11 +276,7 @@ chmod +x "$CLONE_DIR/install.sh"
 # Done
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-if [ "$ACTION" = "update" ]; then
-  echo -e "${GREEN}${BOLD}Updated!${NC} Agents in ${PROJECT_DIR} are now at the latest version."
-else
-  echo -e "${GREEN}${BOLD}Installed!${NC} Agents ready in ${PROJECT_DIR}"
-fi
+echo -e "${GREEN}${BOLD}Installed!${NC} Agents ready in ${PROJECT_DIR}"
 echo ""
 echo "Quick start:"
 echo "  cd $PROJECT_DIR"
