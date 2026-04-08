@@ -238,6 +238,20 @@ if [ "$ACTION" = "update" ]; then
       ok "Updated AGENTS.md"
     fi
 
+    # Update Claude Code extension agent
+    if [ -f "$CLONE_DIR/.claude/agents/universal-agents.md" ]; then
+      mkdir -p "${PROJECT_DIR}/.claude/agents"
+      cp "$CLONE_DIR/.claude/agents/universal-agents.md" "${PROJECT_DIR}/.claude/agents/universal-agents.md"
+      ok "Updated .claude/agents/universal-agents.md"
+    fi
+
+    # Update Copilot agent
+    if [ -f "$CLONE_DIR/.github/agents/universal-agents.agent.md" ]; then
+      mkdir -p "${PROJECT_DIR}/.github/agents"
+      cp "$CLONE_DIR/.github/agents/universal-agents.agent.md" "${PROJECT_DIR}/.github/agents/universal-agents.agent.md"
+      ok "Updated .github/agents/universal-agents.agent.md"
+    fi
+
     # Update scripts
     for script in agent-pick.sh agent-pick.ps1 agent-pick-fzf-preview.sh validate.sh uninstall.sh; do
       if [ -f "$CLONE_DIR/$script" ]; then

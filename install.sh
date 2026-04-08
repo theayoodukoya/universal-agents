@@ -421,11 +421,25 @@ install_alongside \
   ".cursor/rules/agents.mdc (Cursor)"
 
 # .claude/settings.json — skip if exists (JSON is not safely mergeable)
-mkdir -p "${PROJECT_DIR}/.claude" 2>/dev/null || true
+mkdir -p "${PROJECT_DIR}/.claude/agents" 2>/dev/null || true
 install_config_file \
   "${SCRIPT_DIR}/.claude/settings.json" \
   "${PROJECT_DIR}/.claude/settings.json" \
   ".claude/settings.json"
+
+# .claude/agents/ — Claude Code extension auto-dispatch router
+if [ -f "${SCRIPT_DIR}/.claude/agents/universal-agents.md" ]; then
+  if [ ! -f "${PROJECT_DIR}/.claude/agents/universal-agents.md" ] || [ "$MODE" = "replace" ]; then
+    if ! $DRY_RUN; then
+      cp "${SCRIPT_DIR}/.claude/agents/universal-agents.md" "${PROJECT_DIR}/.claude/agents/universal-agents.md"
+    fi
+    success ".claude/agents/universal-agents.md (Claude Code extension auto-dispatch)"
+    FILES_CREATED=$((FILES_CREATED + 1))
+  else
+    info ".claude/agents/universal-agents.md already exists (skipped)"
+    FILES_SKIPPED=$((FILES_SKIPPED + 1))
+  fi
+fi
 
 # .codex/config.toml — skip if exists (TOML is not safely mergeable)
 mkdir -p "${PROJECT_DIR}/.codex" 2>/dev/null || true
@@ -548,16 +562,13 @@ echo -e "${YELLOW}[6/7]${NC} Updating .gitignore...\n"
 GITIGNORE="${PROJECT_DIR}/.gitignore"
 GITIGNORE_ENTRIES="
 # Universal Agents — auto-added by installer
-# These are tool-specific configs and agent files that don't need to be in your repo.
-# Remove any line below if you DO want to commit that folder for your team.
+# Agent files and tool configs that are installed per-developer.
+# These do NOT need to be committed to your repo.
 agents/
 agents-manifest.json
 completions/
-.claude/
 .codex/
-.cursor/
-.github/agents/
-.github/copilot-instructions.md
+.cursor/rules/agents.mdc
 .vscode/agents.code-snippets
 .universal-agents-backup/
 agent-pick.sh
@@ -569,6 +580,10 @@ AGENTS.md
 CLAUDE.md
 GEMINI.md
 CONTRIBUTING.md
+
+# NOTE: These are NOT gitignored because the tools need them committed:
+# .github/agents/  — GitHub Copilot requires this on the default branch
+# .claude/agents/  — Claude Code extension reads agents from here
 "
 
 MARKER_START="# >>> universal-agents-gitignore"
