@@ -1,20 +1,15 @@
 #!/usr/bin/env bash
 # ╔═══════════════════════════════════════════════════════════════════╗
-# ║  Universal Agents — Remote Installer                             ║
-# ║  One command to clone + install into your project                ║
+# ║  Universal Agents — Remote Installer / Updater / Uninstaller     ║
 # ║                                                                  ║
-# ║  Usage:                                                          ║
-# ║    curl -fsSL https://raw.githubusercontent.com/OWNER/universal-agents/main/remote-install.sh | bash -s -- /path/to/project ║
-# ║                                                                  ║
-# ║  Or with options:                                                ║
-# ║    curl -fsSL <url> | bash -s -- --target /path/to/project       ║
-# ║    curl -fsSL <url> | bash -s -- --replace /path/to/project      ║
+# ║  Install:   install-agents                                       ║
+# ║  Update:    update-agents                                        ║
+# ║  Remove:    remove-agents                                        ║
 # ╚═══════════════════════════════════════════════════════════════════╝
 
 set -euo pipefail
 
 # ---- Configuration ----
-# UPDATE THIS to your actual GitHub repo URL
 REPO_URL="${UNIVERSAL_AGENTS_REPO:-https://github.com/theayoodukoya/universal-agents.git}"
 BRANCH="${UNIVERSAL_AGENTS_BRANCH:-main}"
 CLONE_DIR="${TMPDIR:-/tmp}/universal-agents-$$"
@@ -40,13 +35,23 @@ cleanup() {
 }
 trap cleanup EXIT
 
-# ---- Parse args ----
+# ---- Detect mode from command name or first arg ----
+ACTION="install"
 MODE="merge"
 DRY_RUN=""
 PROJECT_DIR=""
 
+# Check if called as update-agents or remove-agents (via alias)
+case "${0##*/}" in
+  *update*) ACTION="update" ;;
+  *remove*|*uninstall*) ACTION="uninstall" ;;
+esac
+
 while [[ $# -gt 0 ]]; do
   case $1 in
+    install)     ACTION="install"; shift ;;
+    update)      ACTION="update"; shift ;;
+    remove|uninstall) ACTION="uninstall"; shift ;;
     --merge)     MODE="merge"; shift ;;
     --replace)   MODE="replace"; shift ;;
     --skip)      MODE="skip"; shift ;;
@@ -56,10 +61,17 @@ while [[ $# -gt 0 ]]; do
     --branch)    BRANCH="$2"; shift 2 ;;
     --help|-h)
       cat << 'EOF'
-Universal Agents — Remote Installer
+Universal Agents — Install / Update / Remove
 
 Usage:
-  curl -fsSL <url> | bash -s -- [OPTIONS] [PROJECT_PATH]
+  install-agents [PROJECT_PATH]     Install agents into a project
+  update-agents  [PROJECT_PATH]     Update agents to latest version
+  remove-agents  [PROJECT_PATH]     Remove agents from a project
+
+  Or explicitly:
+  curl -fsSL <url> | bash -s -- install [PROJECT_PATH]
+  curl -fsSL <url> | bash -s -- update  [PROJECT_PATH]
+  curl -fsSL <url> | bash -s -- remove  [PROJECT_PATH]
 
 Options:
   --merge     (default) Merge with existing configs
@@ -72,21 +84,11 @@ Options:
   --help      Show this help
 
 Examples:
-  # Install into current directory
-  curl -fsSL <url> | bash
-
-  # Install into a specific project
-  curl -fsSL <url> | bash -s -- ~/code/my-project
-
-  # Dry run first
-  curl -fsSL <url> | bash -s -- --dry-run ~/code/my-project
-
-  # Use a fork
-  curl -fsSL <url> | bash -s -- --repo https://github.com/you/universal-agents.git ~/code/my-project
-
-Environment Variables:
-  UNIVERSAL_AGENTS_REPO     Override the Git repo URL
-  UNIVERSAL_AGENTS_BRANCH   Override the branch (default: main)
+  install-agents                          # Install into current directory
+  install-agents ~/code/my-project        # Install into specific project
+  update-agents                           # Pull latest and re-install
+  remove-agents                           # Remove agents from current dir
+  install-agents --dry-run                # Preview without changes
 EOF
       exit 0
       ;;
@@ -100,10 +102,89 @@ PROJECT_DIR="$(cd "$PROJECT_DIR" 2>/dev/null && pwd || echo "$PROJECT_DIR")"
 
 # ---- Preflight checks ----
 echo ""
-echo -e "${BOLD}Universal Agents — Remote Installer${NC}"
+echo -e "${BOLD}Universal Agents — ${ACTION^}${NC}"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 
+# ==================================================================
+# UNINSTALL
+# ==================================================================
+if [ "$ACTION" = "uninstall" ]; then
+  if [ ! -d "${PROJECT_DIR}/agents" ]; then
+    error "No agents found in ${PROJECT_DIR}. Nothing to remove."
+    exit 1
+  fi
+
+  info "Removing universal agents from: ${PROJECT_DIR}"
+  echo ""
+
+  if [ -n "$DRY_RUN" ]; then
+    echo -e "${YELLOW}DRY RUN — nothing will be deleted${NC}\n"
+  fi
+
+  # Remove agent files and folders
+  REMOVED=0
+  for item in \
+    "agents" \
+    "agents-manifest.json" \
+    "completions" \
+    "agent-pick.sh" \
+    "agent-pick.ps1" \
+    "agent-pick-fzf-preview.sh" \
+    "validate.sh" \
+    "uninstall.sh" \
+    "AGENTS.md" \
+    "CLAUDE.md" \
+    "GEMINI.md" \
+    "CONTRIBUTING.md" \
+    ".claude" \
+    ".codex" \
+    ".cursor/rules/agents.mdc" \
+    ".vscode/agents.code-snippets" \
+    ".github/agents/universal-agents.agent.md"
+  do
+    target="${PROJECT_DIR}/${item}"
+    if [ -e "$target" ]; then
+      if [ -z "$DRY_RUN" ]; then
+        rm -rf "$target"
+      fi
+      ok "Removed: $item"
+      REMOVED=$((REMOVED + 1))
+    fi
+  done
+
+  # Clean merged content from files with markers
+  for file in ".github/copilot-instructions.md"; do
+    target="${PROJECT_DIR}/${file}"
+    if [ -f "$target" ] && grep -q "<!-- universal-agents-begin -->" "$target" 2>/dev/null; then
+      if [ -z "$DRY_RUN" ]; then
+        sed -i.bak '/<!-- universal-agents-begin -->/,/<!-- universal-agents-end -->/d' "$target"
+        rm -f "${target}.bak"
+      fi
+      ok "Cleaned merged content from: $file"
+      REMOVED=$((REMOVED + 1))
+    fi
+  done
+
+  # Clean .gitignore markers
+  GITIGNORE="${PROJECT_DIR}/.gitignore"
+  if [ -f "$GITIGNORE" ] && grep -q ">>> universal-agents-gitignore" "$GITIGNORE" 2>/dev/null; then
+    if [ -z "$DRY_RUN" ]; then
+      sed -i.bak '/# >>> universal-agents-gitignore/,/# <<< universal-agents-gitignore/d' "$GITIGNORE"
+      rm -f "${GITIGNORE}.bak"
+    fi
+    ok "Cleaned .gitignore entries"
+    REMOVED=$((REMOVED + 1))
+  fi
+
+  echo ""
+  echo -e "${GREEN}${BOLD}Done!${NC} Removed $REMOVED items from ${PROJECT_DIR}"
+  exit 0
+fi
+
+# ==================================================================
+# INSTALL / UPDATE
+# ==================================================================
 if ! command -v git &>/dev/null; then
   error "git is required but not installed."
   echo "  Install it from https://git-scm.com/downloads"
@@ -121,26 +202,36 @@ if [ ! -d "$PROJECT_DIR" ]; then
   ok "Created $PROJECT_DIR"
 fi
 
-# ---- Step 1: Clone ----
+# For update: use --replace to get latest versions
+if [ "$ACTION" = "update" ]; then
+  MODE="replace"
+  info "Update mode: will replace existing agent files with latest versions"
+  echo ""
+fi
+
+# Clone latest
 info "Cloning universal-agents from ${REPO_URL} (branch: ${BRANCH})..."
 git clone --depth 1 --branch "$BRANCH" "$REPO_URL" "$CLONE_DIR" 2>/dev/null
 ok "Cloned to temporary directory"
 
-# ---- Step 2: Run the real installer ----
+# Run the real installer
 info "Running installer → ${PROJECT_DIR}"
 echo ""
 
 chmod +x "$CLONE_DIR/install.sh"
 "$CLONE_DIR/install.sh" --"$MODE" $DRY_RUN --target "$PROJECT_DIR"
 
-# ---- Done ----
+# Done
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo -e "${GREEN}${BOLD}Done!${NC} Agents installed into:"
-echo -e "  ${BOLD}$PROJECT_DIR${NC}"
+if [ "$ACTION" = "update" ]; then
+  echo -e "${GREEN}${BOLD}Updated!${NC} Agents in ${PROJECT_DIR} are now at the latest version."
+else
+  echo -e "${GREEN}${BOLD}Installed!${NC} Agents ready in ${PROJECT_DIR}"
+fi
 echo ""
 echo "Quick start:"
 echo "  cd $PROJECT_DIR"
 echo "  ./agent-pick.sh           # Find an agent"
-echo "  @agent-name: your request # Use it in any AI tool"
+echo "  Just describe your task   # Auto-dispatch picks the right agent"
 echo ""

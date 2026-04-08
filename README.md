@@ -891,46 +891,52 @@ A: Three ways: (1) Run `./agent-pick.sh`, (2) Read `AGENTS.md`, (3) Ask the rout
 3. **Look at examples**: Browse agent files in `agents/` to see the format
 4. **Create a custom agent**: For your specific use case, add a new agent file
 
-## Quick Install Alias (Optional)
+## Quick Commands (Optional Shell Aliases)
 
-Add this to your shell profile (`~/.zshrc`, `~/.bashrc`, or `~/.config/fish/config.fish`) so you can install agents into any project with one command:
+Add these to your shell profile so you can install, update, and remove agents from any project directory.
 
-**Zsh / Bash:**
+**Zsh / Bash** — add to `~/.zshrc` or `~/.bashrc`:
 ```bash
-# Add to ~/.zshrc or ~/.bashrc
-install-agents() {
-  curl -fsSL https://raw.githubusercontent.com/theayoodukoya/universal-agents/main/remote-install.sh | bash -s -- "${1:-.}"
-}
+UA_URL="https://raw.githubusercontent.com/theayoodukoya/universal-agents/main/remote-install.sh"
+install-agents() { curl -fsSL "$UA_URL" | bash -s -- install "${1:-.}"; }
+update-agents()  { curl -fsSL "$UA_URL" | bash -s -- update  "${1:-.}"; }
+remove-agents()  { curl -fsSL "$UA_URL" | bash -s -- remove  "${1:-.}"; }
 ```
 
-**Fish:**
+**Fish** — add to `~/.config/fish/config.fish`:
 ```fish
-# Add to ~/.config/fish/config.fish
-function install-agents
-  curl -fsSL https://raw.githubusercontent.com/theayoodukoya/universal-agents/main/remote-install.sh | bash -s -- $argv[1] (or .)
-end
+set -g UA_URL "https://raw.githubusercontent.com/theayoodukoya/universal-agents/main/remote-install.sh"
+function install-agents; curl -fsSL $UA_URL | bash -s -- install $argv[1]; end
+function update-agents;  curl -fsSL $UA_URL | bash -s -- update  $argv[1]; end
+function remove-agents;  curl -fsSL $UA_URL | bash -s -- remove  $argv[1]; end
 ```
 
-**PowerShell (Windows):**
+**PowerShell (Windows)** — add to your profile (`$PROFILE`):
 ```powershell
-# Add to your PowerShell profile ($PROFILE)
-function Install-Agents {
-  param([string]$Target = ".")
-  Invoke-WebRequest -Uri "https://raw.githubusercontent.com/theayoodukoya/universal-agents/main/remote-install.sh" -OutFile "$env:TEMP\ua-install.sh"
-  bash "$env:TEMP\ua-install.sh" $Target
-}
+$UA_URL = "https://raw.githubusercontent.com/theayoodukoya/universal-agents/main/remote-install.sh"
+function Install-Agents { param([string]$T=".") irm $UA_URL -OutFile "$env:TEMP\ua.sh"; bash "$env:TEMP\ua.sh" install $T }
+function Update-Agents  { param([string]$T=".") irm $UA_URL -OutFile "$env:TEMP\ua.sh"; bash "$env:TEMP\ua.sh" update $T }
+function Remove-Agents  { param([string]$T=".") irm $UA_URL -OutFile "$env:TEMP\ua.sh"; bash "$env:TEMP\ua.sh" remove $T }
 Set-Alias install-agents Install-Agents
+Set-Alias update-agents Update-Agents
+Set-Alias remove-agents Remove-Agents
 ```
 
-Then from any project:
+After adding, reload your shell: `source ~/.zshrc` (or open a new terminal).
+
+**Usage:**
 
 ```bash
 cd ~/code/my-project
-install-agents              # installs into current directory
-install-agents ~/code/other # or specify a path
+
+install-agents          # Install agents into current project
+update-agents           # Pull latest agents from GitHub and update
+remove-agents           # Cleanly remove all agents from project
+
+install-agents --dry-run    # Preview what would be installed
 ```
 
-Or skip the alias entirely — just tell your AI tool:
+Or skip the aliases entirely — tell your AI tool:
 
 ```
 Run: curl -fsSL https://raw.githubusercontent.com/theayoodukoya/universal-agents/main/remote-install.sh | bash

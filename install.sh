@@ -320,7 +320,7 @@ $DRY_RUN && echo -e "  ${YELLOW}DRY RUN — no files will be modified${NC}"
 echo ""
 
 # ---- Detect existing configs ----
-echo -e "${YELLOW}[1/6]${NC} Scanning for existing configurations...\n"
+echo -e "${YELLOW}[1/7]${NC} Scanning for existing configurations...\n"
 
 EXISTING=()
 for f in AGENTS.md CLAUDE.md GEMINI.md .github/copilot-instructions.md .cursor/rules .claude/settings.json .codex/config.toml; do
@@ -342,7 +342,7 @@ fi
 echo ""
 
 # ---- Step 2: Install agent files ----
-echo -e "${YELLOW}[2/6]${NC} Installing agent files...\n"
+echo -e "${YELLOW}[2/7]${NC} Installing agent files...\n"
 
 if $DRY_RUN; then
   dry "Would create agents/ directory and copy agent .md files"
@@ -375,7 +375,7 @@ fi
 echo ""
 
 # ---- Step 3: Install universal configs (merge-safe) ----
-echo -e "${YELLOW}[3/6]${NC} Installing tool configurations (merge-safe)...\n"
+echo -e "${YELLOW}[3/7]${NC} Installing tool configurations (merge-safe)...\n"
 
 # AGENTS.md — universal entry point (Codex, Antigravity, OpenCode)
 merge_markdown \
@@ -437,7 +437,7 @@ install_config_file \
 echo ""
 
 # ---- Step 4: Install discovery & maintenance tools ----
-echo -e "${YELLOW}[4/6]${NC} Installing agent discovery & maintenance tools...\n"
+echo -e "${YELLOW}[4/7]${NC} Installing agent discovery & maintenance tools...\n"
 
 # Agent picker (fuzzy search) — Mac/Linux
 if [ -f "${SCRIPT_DIR}/agent-pick.sh" ]; then
@@ -524,7 +524,7 @@ fi
 echo ""
 
 # ---- Step 5: Global configs ----
-echo -e "${YELLOW}[5/6]${NC} Global configurations...\n"
+echo -e "${YELLOW}[5/7]${NC} Global configurations...\n"
 
 # Codex global AGENTS.md
 if command -v codex &>/dev/null || [ -d "$HOME/.codex" ]; then
@@ -542,8 +542,59 @@ else
 fi
 echo ""
 
-# ---- Step 6: Summary ----
-echo -e "${YELLOW}[6/6]${NC} Summary\n"
+# ---- Step 6: Update .gitignore ----
+echo -e "${YELLOW}[6/7]${NC} Updating .gitignore...\n"
+
+GITIGNORE="${PROJECT_DIR}/.gitignore"
+GITIGNORE_ENTRIES="
+# Universal Agents — auto-added by installer
+# These are tool-specific configs and agent files that don't need to be in your repo.
+# Remove any line below if you DO want to commit that folder for your team.
+agents/
+agents-manifest.json
+completions/
+.claude/
+.codex/
+.cursor/
+.vscode/agents.code-snippets
+agent-pick.sh
+agent-pick.ps1
+agent-pick-fzf-preview.sh
+validate.sh
+uninstall.sh
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+CONTRIBUTING.md
+"
+
+MARKER_START="# >>> universal-agents-gitignore"
+MARKER_END="# <<< universal-agents-gitignore"
+
+if [ -f "$GITIGNORE" ]; then
+  if grep -q "$MARKER_START" "$GITIGNORE"; then
+    info ".gitignore already has universal-agents entries (skipped)"
+  else
+    if ! $DRY_RUN; then
+      printf "\n%s\n%s\n%s\n" "$MARKER_START" "$GITIGNORE_ENTRIES" "$MARKER_END" >> "$GITIGNORE"
+    fi
+    success ".gitignore updated (appended agent entries)"
+    FILES_MERGED=$((FILES_MERGED + 1))
+  fi
+else
+  if ! $DRY_RUN; then
+    printf "%s\n%s\n%s\n" "$MARKER_START" "$GITIGNORE_ENTRIES" "$MARKER_END" > "$GITIGNORE"
+  fi
+  success ".gitignore created with agent entries"
+  FILES_CREATED=$((FILES_CREATED + 1))
+fi
+
+echo -e "  ${DIM}Note: .github/ is NOT gitignored (Copilot instructions benefit your team)${NC}"
+echo -e "  ${DIM}Edit .gitignore to un-ignore any folder you want to share with your team.${NC}"
+echo ""
+
+# ---- Step 7: Summary ----
+echo -e "${YELLOW}[7/7]${NC} Summary\n"
 
 TOTAL_OPS=$((FILES_CREATED + FILES_MERGED + FILES_SKIPPED))
 
