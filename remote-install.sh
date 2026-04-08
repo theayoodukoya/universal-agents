@@ -102,7 +102,8 @@ PROJECT_DIR="$(cd "$PROJECT_DIR" 2>/dev/null && pwd || echo "$PROJECT_DIR")"
 
 # ---- Preflight checks ----
 echo ""
-echo -e "${BOLD}Universal Agents — ${ACTION^}${NC}"
+ACTION_LABEL="$(echo "$ACTION" | awk '{print toupper(substr($0,1,1)) tolower(substr($0,2))}')"
+echo -e "${BOLD}Universal Agents — ${ACTION_LABEL}${NC}"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 
