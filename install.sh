@@ -556,7 +556,10 @@ completions/
 .claude/
 .codex/
 .cursor/
+.github/agents/
+.github/copilot-instructions.md
 .vscode/agents.code-snippets
+.universal-agents-backup/
 agent-pick.sh
 agent-pick.ps1
 agent-pick-fzf-preview.sh
@@ -589,8 +592,8 @@ else
   FILES_CREATED=$((FILES_CREATED + 1))
 fi
 
-echo -e "  ${DIM}Note: .github/ is NOT gitignored (Copilot instructions benefit your team)${NC}"
-echo -e "  ${DIM}Edit .gitignore to un-ignore any folder you want to share with your team.${NC}"
+echo -e "  ${DIM}Note: All agent-related files are gitignored by default.${NC}"
+echo -e "  ${DIM}Edit .gitignore to un-ignore any file you want to share with your team.${NC}"
 echo ""
 
 # ---- Step 7: Summary ----
