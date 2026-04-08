@@ -891,11 +891,57 @@ A: Three ways: (1) Run `./agent-pick.sh`, (2) Read `AGENTS.md`, (3) Ask the rout
 3. **Look at examples**: Browse agent files in `agents/` to see the format
 4. **Create a custom agent**: For your specific use case, add a new agent file
 
+## Quick Install Alias (Optional)
+
+Add this to your shell profile (`~/.zshrc`, `~/.bashrc`, or `~/.config/fish/config.fish`) so you can install agents into any project with one command:
+
+**Zsh / Bash:**
+```bash
+# Add to ~/.zshrc or ~/.bashrc
+install-agents() {
+  curl -fsSL https://raw.githubusercontent.com/theayoodukoya/universal-agents/main/remote-install.sh | bash -s -- "${1:-.}"
+}
+```
+
+**Fish:**
+```fish
+# Add to ~/.config/fish/config.fish
+function install-agents
+  curl -fsSL https://raw.githubusercontent.com/theayoodukoya/universal-agents/main/remote-install.sh | bash -s -- $argv[1] (or .)
+end
+```
+
+**PowerShell (Windows):**
+```powershell
+# Add to your PowerShell profile ($PROFILE)
+function Install-Agents {
+  param([string]$Target = ".")
+  Invoke-WebRequest -Uri "https://raw.githubusercontent.com/theayoodukoya/universal-agents/main/remote-install.sh" -OutFile "$env:TEMP\ua-install.sh"
+  bash "$env:TEMP\ua-install.sh" $Target
+}
+Set-Alias install-agents Install-Agents
+```
+
+Then from any project:
+
+```bash
+cd ~/code/my-project
+install-agents              # installs into current directory
+install-agents ~/code/other # or specify a path
+```
+
+Or skip the alias entirely — just tell your AI tool:
+
+```
+Run: curl -fsSL https://raw.githubusercontent.com/theayoodukoya/universal-agents/main/remote-install.sh | bash
+```
+
 ## Next Steps
 
 1. **Install agents** into your project:
    ```bash
-   ./install.sh --target /path/to/my-project
+   install-agents                    # if you set up the alias
+   ./install.sh --target /path/to   # or from the cloned folder
    ```
 
 2. **Discover agents**:
@@ -903,11 +949,12 @@ A: Three ways: (1) Run `./agent-pick.sh`, (2) Read `AGENTS.md`, (3) Ask the rout
    ./agent-pick.sh
    ```
 
-3. **Try one**: Open Claude Code (or your AI tool) and reference an agent:
+3. **Try one**: Open your AI tool and just describe your task — auto-dispatch picks the right agent:
    ```
-   @engineering-code-reviewer: Review this code for security issues
+   Review this code for security issues
    [paste code]
    ```
+   Or name one directly: `@engineering-code-reviewer`
 
 4. **Explore**: Browse `AGENTS.md` for all 122 agents
 
