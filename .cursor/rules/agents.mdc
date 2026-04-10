@@ -1,6 +1,6 @@
 ---
 title: Universal Agents System
-description: 122 specialized AI agents for engineering, design, product, marketing, operations, and more. Reference agents with @agent-name in Cursor to load specialized expertise.
+description: 123 specialized AI agents for engineering, design, product, marketing, operations, and more. Reference agents with @agent-name in Cursor to load specialized expertise.
 glob: **/*
 alwaysApply: true
 ---
@@ -13,7 +13,7 @@ alwaysApply: true
 
 # Cursor Agent System Rules
 
-This project contains a system of **122 specialized AI agents** designed to provide focused expertise across all aspects of software development and operations.
+This project contains a system of **123 specialized AI agents** designed to provide focused expertise across all aspects of software development and operations.
 
 ## Auto-Dispatch: Automatic Agent Selection
 
@@ -147,7 +147,7 @@ Search for agent name in Cursor's command palette and select to load agent conte
 View the complete registry:
 
 ```
-AGENTS.md          # Full list of 122 agents with categories
+AGENTS.md          # Full list of 123 agents with categories
 agents/            # Individual agent files
 CLAUDE.md          # Detailed usage instructions
 ```
@@ -276,7 +276,7 @@ Cursor automatically loads agents from the `agents/` directory. Configuration:
 - **Agents location**: `agents/` directory
 - **Format**: Markdown with YAML frontmatter
 - **Version**: 1.0.0
-- **Total agents**: 122
+- **Total agents**: 123
 
 ## Creating Custom Agents
 
@@ -325,5 +325,5 @@ Add a new agent:
 ---
 
 **Last Updated**: 2026-04-07
-**Total Agents**: 122
+**Total Agents**: 123
 **Compatible Tools**: Cursor, Claude Code, GitHub Copilot, Gemini CLI, VS Code, Antigravity, OpenCode

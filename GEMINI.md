@@ -1,6 +1,6 @@
 # Gemini Code Assist & CLI Agent Instructions
 
-This repository contains **122 specialized AI agents** designed to work seamlessly with Google's Gemini Code Assist and Gemini CLI to provide focused expertise across all software development and operations domains.
+This repository contains **123 specialized AI agents** designed to work seamlessly with Google's Gemini Code Assist and Gemini CLI to provide focused expertise across all software development and operations domains.
 
 ## Auto-Dispatch: Automatic Agent Selection
 
@@ -450,7 +450,7 @@ Provide:
 
 Complete registry with descriptions:
 
-**AGENTS.md** — All 122 agents organized by category
+**AGENTS.md** — All 123 agents organized by category
 
 Agents directory:
 ```
@@ -478,7 +478,7 @@ This agent system integrates with Gemini:
 - **Registry**: `AGENTS.md`
 - **Format**: Markdown with YAML frontmatter
 - **Version**: 1.0.0
-- **Total agents**: 122
+- **Total agents**: 123
 - **Compatible with**: Gemini Code Assist, Gemini CLI, and all major AI tools
 
 ## Tool Integration
@@ -543,6 +543,6 @@ See `AGENTS.md` for agent format specification.
 ---
 
 **Last Updated**: 2026-04-07
-**Total Agents**: 122
+**Total Agents**: 123
 **Version**: 1.0.0
 **Compatible Tools**: Gemini CLI, Gemini Code Assist, Claude Code, GitHub Copilot, Cursor, VS Code, Antigravity, OpenCode

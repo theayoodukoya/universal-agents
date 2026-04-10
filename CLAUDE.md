@@ -2,7 +2,7 @@
 
 ## Universal Agents System
 
-This project contains a system of **122 specialized AI agents** designed to assist with every aspect of software development, design, marketing, operations, and more.
+This project contains a system of **123 specialized AI agents** designed to assist with every aspect of software development, design, marketing, operations, and more.
 
 ### What Are Agents?
 
@@ -186,7 +186,7 @@ All configuration is in `.claude/settings.json`:
 - `agentsDir` — Path to agents directory (./agents)
 - `registry` — Main agent registry file (AGENTS.md)
 - `projectInstructions` — This file (CLAUDE.md)
-- `capabilities.agentCount` — Current count (122)
+- `capabilities.agentCount` — Current count (123)
 - `invocationPatterns` — How to invoke agents
 
 ### Tips for Best Results
@@ -222,5 +222,5 @@ For feedback or agent improvements, check AGENTS.md for the version and report i
 
 **Version**: 1.0.0
 **Last Updated**: 2026-04-07
-**Total Agents**: 122
+**Total Agents**: 123
 **Compatible Tools**: Claude Code, GitHub Copilot, Gemini CLI, Cursor, VS Code, Antigravity, OpenCode

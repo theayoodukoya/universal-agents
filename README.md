@@ -1,10 +1,10 @@
 # Universal Agents
 
-You have **122 expert prompt files**. Copy them into your project, and your AI coding tool loads them automatically. Done.
+You have **123 expert prompt files**. Copy them into your project, and your AI coding tool loads them automatically. Done.
 
 ## What Is This?
 
-This folder contains 122 specialized system prompts — we call them "agents" — that teach AI coding tools like Claude Code, GitHub Copilot, Cursor, and Gemini to be experts in different domains.
+This folder contains 123 specialized system prompts — we call them "agents" — that teach AI coding tools like Claude Code, GitHub Copilot, Cursor, and Gemini to be experts in different domains.
 
 Instead of asking Claude "Can you review this code for security?", you ask the **Code Reviewer agent** — a prompt that's been fine-tuned specifically for that task. You get faster, more focused responses because the agent knows exactly what to do and how to do it.
 
@@ -15,7 +15,7 @@ Each agent is just a Markdown file. When you install them into your project, you
 ```
 ┌─────────────────────────┐
 │  universal-agents/      │
-│  ├── agents/            │  ← 122 agent files (prompts)
+│  ├── agents/            │  ← 123 agent files (prompts)
 │  ├── install.sh         │
 │  ├── validate.sh        │
 │  └── agent-pick.sh      │
@@ -32,7 +32,7 @@ Each agent is just a Markdown file. When you install them into your project, you
 │  ├── .gemini/           │  ← Gemini agents
 │  ├── AGENTS.md          │  ← Universal registry
 │  ├── CLAUDE.md          │  ← Claude Code config
-│  └── agents/            │  ← Your copies of all 122 agents
+│  └── agents/            │  ← Your copies of all 123 agents
 └─────────────────────────┘
            │
            │ Now use them: @agent-name in your tool
@@ -128,7 +128,7 @@ cd universal-agents
 ```
 
 **What it does:**
-- Copies all 122 agent files to `my-project/agents/`
+- Copies all 123 agent files to `my-project/agents/`
 - Creates tool-specific configs (`.claude/`, `.github/`, `.cursor/`, `.gemini/`)
 - Creates `AGENTS.md` (central registry)
 - Creates `CLAUDE.md` (Claude Code instructions)
@@ -184,7 +184,7 @@ If you use Claude Code, Copilot, or any AI coding tool, just ask it to install:
 Hey Claude, install universal-agents from ~/Desktop/universal-agents into this project.
 
 Here's what I want:
-- Copy all 122 agents to ./agents/
+- Copy all 123 agents to ./agents/
 - Set up .claude/ for Claude Code
 - Set up .github/ for GitHub Copilot
 - Create AGENTS.md and CLAUDE.md
@@ -347,7 +347,7 @@ Works, but most people prefer the web/IDE interfaces above.
 
 ## Finding the Right Agent
 
-There are 122 agents. Here's how to find the right one:
+There are 123 agents. Here's how to find the right one:
 
 ### 1. Use the Interactive Picker (Best)
 
@@ -363,7 +363,7 @@ This interactive CLI searches agents by name, description, and category. With fz
 ```
 $ ./agent-pick.sh
 
-Universal Agents Picker (122 agents)
+Universal Agents Picker (123 agents)
 
 [Search]: database
   ► engineering-database-optimizer — Optimizes database queries, indexing, and schema design
@@ -396,19 +396,19 @@ Open `AGENTS.md` in your project. It's a complete registry organized by category
 | Marketing | Marketing | `@marketing-seo-specialist`, `@marketing-growth-hacker` |
 | Project Management | PM | `@project-manager-senior`, `@project-management-project-shepherd` |
 
-See `AGENTS.md` for the full list of 122 agents.
+See `AGENTS.md` for the full list of 123 agents.
 
-## The @ Autocomplete Question: Why Not 122 Entries?
+## The @ Autocomplete Question: Why Not 123 Entries?
 
-You might ask: "If I use GitHub Copilot or Claude Code, won't I see 122 agents in the autocomplete dropdown?"
+You might ask: "If I use GitHub Copilot or Claude Code, won't I see 123 agents in the autocomplete dropdown?"
 
 **Answer: No.** Here's why.
 
-Most tools (especially Copilot and Claude Code) show a small curated list of agents in autocomplete — usually 5–10. Adding 122 would be overwhelming.
+Most tools (especially Copilot and Claude Code) show a small curated list of agents in autocomplete — usually 5–10. Adding 123 would be overwhelming.
 
 **Solution: Router Pattern**
 
-Instead of 122 autocomplete entries, there's **one entry per tool**: `@universal-agents` (Copilot), `@project-agents` (Claude Code), etc. You ask the router which agent to use:
+Instead of 123 autocomplete entries, there's **one entry per tool**: `@universal-agents` (Copilot), `@project-agents` (Claude Code), etc. You ask the router which agent to use:
 
 ```
 @universal-agents: I need to optimize a slow database query. Which agent should I use?
@@ -421,11 +421,11 @@ The router tells you to use `@engineering-database-optimizer`. Then you invoke i
 ```
 
 **How it works under the hood:**
-- `.github/agents/universal-agents.agent.md` (Copilot) — a router that knows all 122 agents
+- `.github/agents/universal-agents.agent.md` (Copilot) — a router that knows all 123 agents
 - `.claude/agents.json` (Claude Code) — configuration that points to all agents
 - `AGENTS.md` — universal registry that all tools reference
 
-You get the best of both worlds: **clean autocomplete** + **full access to 122 agents**.
+You get the best of both worlds: **clean autocomplete** + **full access to 123 agents**.
 
 ## Agent Categories (Quick Reference)
 
@@ -443,7 +443,7 @@ Gaming (5)               — Game design, level design, narrative design, audio,
 Paid Media (7)           — Ad strategy, creative, PPC, programmatic, attribution
 Shopify (3)              — Theme development, section design, optimization
 
-TOTAL: 122 agents
+TOTAL: 123 agents
 ```
 
 See `AGENTS.md` for the complete list with descriptions.
@@ -461,7 +461,7 @@ Run with no arguments. Type to search across agent names, descriptions, and cate
 ```
 
 ```
-Universal Agents Picker (122 agents)
+Universal Agents Picker (123 agents)
 
 [Search]: database
   ► engineering-database-optimizer — Optimizes database queries, indexing, and schema design
@@ -646,11 +646,11 @@ Checks that all agents are properly formatted and installed:
 
 Output:
 ```
-✓ 122 agents found in agents/
+✓ 123 agents found in agents/
 ✓ All agents have YAML frontmatter
 ✓ No hardcoded paths found
 ✓ AGENTS.md registry is complete
-✓ agents-manifest.json is in sync (122 agents)
+✓ agents-manifest.json is in sync (123 agents)
 ✓ All validations passed!
 ```
 
@@ -710,7 +710,7 @@ my-project/
 ├── README.md                    # Your project readme
 ├── package.json                 # (or equivalent)
 │
-├── agents/                      # All 122 universal agents (copied here)
+├── agents/                      # All 123 universal agents (copied here)
 │   ├── engineering-code-reviewer.md
 │   ├── engineering-security-engineer.md
 │   ├── design-ux-architect.md
@@ -844,7 +844,7 @@ Create custom agents with confidence — they're just Markdown files.
 
 ## FAQ
 
-**Q: Do I need all 122 agents?**
+**Q: Do I need all 123 agents?**
 A: No. Start with agents relevant to your work. Ignore the rest. You can browse with `./agent-pick.sh`.
 
 **Q: Can I modify agents?**
@@ -962,14 +962,14 @@ Run: curl -fsSL https://raw.githubusercontent.com/theayoodukoya/universal-agents
    ```
    Or name one directly: `@engineering-code-reviewer`
 
-4. **Explore**: Browse `AGENTS.md` for all 122 agents
+4. **Explore**: Browse `AGENTS.md` for all 123 agents
 
 5. **Create custom agents** as you discover new needs
 
 ---
 
 **Version**: 1.0
-**Total Agents**: 122
+**Total Agents**: 123
 **Last Updated**: 2026-04-07
 **License**: MIT
 

@@ -646,6 +646,27 @@
       ]
     },
     {
+      "id": "engineering-fullstack-debugger",
+      "name": "Full-Stack Debugger",
+      "emoji": "\ud83d\udd2c",
+      "desc": "Elite debugging specialist that systematically isolates root causes across the entire stack \u2014 frontend, API, backend, database, infrastructure. Uses binary search methodology, parallel hypothesis testing, and reproduction-first principles. Never guesses. Hands off to specialist agents once root cause is proven.",
+      "cat": "engineering",
+      "kw": [
+        "agents",
+        "backend",
+        "binary",
+        "cause",
+        "causes",
+        "database",
+        "debugger",
+        "debugging",
+        "elite",
+        "first",
+        "frontend",
+        "full"
+      ]
+    },
+    {
       "id": "engineering-git-workflow-master",
       "name": "Git Workflow Master",
       "emoji": "\ud83c\udf3f",
@@ -2544,6 +2565,7 @@
       "engineering-embedded-firmware-engineer",
       "engineering-flutter-developer",
       "engineering-frontend-developer",
+      "engineering-fullstack-debugger",
       "engineering-git-workflow-master",
       "engineering-incident-response-commander",
       "engineering-mobile-app-builder",

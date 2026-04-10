@@ -34,6 +34,7 @@ This is the universal agent system recognized by Codex (CLI + VSCode), GitHub Co
 - **engineering-e2e-testing-specialist** — Designs and implements end-to-end testing strategies
 - **engineering-embedded-firmware-engineer** — Develops embedded systems, firmware, and hardware integration
 - **engineering-flutter-developer** — Expert in Flutter framework for cross-platform mobile development
+- **engineering-fullstack-debugger** — Elite debugging specialist that systematically isolates root causes across the entire stack using binary search methodology, parallel hypothesis testing, and reproduction-first principles
 - **engineering-frontend-developer** — Full-stack frontend expertise across web technologies
 - **engineering-git-workflow-master** — Expert in Git workflows, branching strategies, and version control
 - **engineering-incident-response-commander** — Leads incident response, post-mortems, and reliability improvements
@@ -293,6 +294,6 @@ vibe: Personality note
 
 **Current Version**: 1.0.0
 **Last Updated**: 2026-04-07
-**Agents Count**: 122 (31 Engineering, 9 Design, 8 Testing, 13 Marketing, 6 Product, 6 Project Management, 7 Support & Operations, 2 Shopify, 7 Paid Media, 18 Specialized, 6 XR & Spatial, 5 Gaming, 2 Other)
+**Agents Count**: 123 (31 Engineering, 9 Design, 8 Testing, 13 Marketing, 6 Product, 6 Project Management, 7 Support & Operations, 2 Shopify, 7 Paid Media, 18 Specialized, 6 XR & Spatial, 5 Gaming, 2 Other)
 
 This agent system is designed for maximum interoperability and portability across all major AI coding tools. All agents follow consistent formatting and can be used across platforms seamlessly.
