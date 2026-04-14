@@ -1,6 +1,10 @@
 # Backups from installer
 .universal-agents-backup/
 
+# Tool config directories (generated on install, not tracked in source repo)
+.claude/
+.github/
+
 # OS files
 .DS_Store
 Thumbs.db
