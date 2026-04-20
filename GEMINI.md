@@ -1,6 +1,9 @@
 # Gemini Code Assist & CLI Agent Instructions
 
-This repository contains **123 specialized AI agents** designed to work seamlessly with Google's Gemini Code Assist and Gemini CLI to provide focused expertise across all software development and operations domains.
+This repository contains a **growing library of specialized AI agents** designed to work seamlessly with Google's Gemini Code Assist and Gemini CLI. The current agent count is always in `agents-manifest.json` → `total`.
+
+**Agents folder**: `./agents/` at the repo root — all agent `.md` files live here.
+**Do NOT scan this folder directly.** Use `agents-manifest.json` to select an agent first, then load only that one file.
 
 ## Auto-Dispatch: Automatic Agent Selection
 
@@ -8,11 +11,12 @@ Gemini automatically selects the best agent for your task. You do NOT need to re
 
 ### How It Works
 
-1. When you receive a task, read `agents-manifest.json` to identify the best-matching agent(s)
-2. Check the project context — file types, dependencies in package.json, config files — to narrow candidates
-3. Match the user's request against agent keywords, descriptions, and categories
-4. Load the matched agent's full `.md` file from `./agents/` and apply its expertise
-5. **ALWAYS announce your selection**: Start with `[Agent: agent-name — reason]`
+1. **Read `agents-manifest.json` once** — this is the lean index at the repo root. Never scan `agents/` directly; reading 100+ files burns tokens unnecessarily.
+2. Match the task against the `name`, `description`, and `vibe` fields for each agent in the manifest.
+3. Check project context — file types, `package.json` dependencies, config files — to break ties.
+4. Select the best-matching agent (or up to 3 for complex tasks).
+5. Load **only** that agent's full `.md` file using the `file` path from the manifest (e.g. `agents/engineering-code-reviewer.md`).
+6. **ALWAYS announce your selection**: Start with `[Agent: agent-name — reason]`
 
 ### Auto-Dispatch Rules
 
@@ -29,7 +33,6 @@ Check the project for signals before keyword matching:
 - `package.json` dependencies → identify stack (Next.js, React Native, Express, etc.)
 - File extensions → `.sql` boosts database agents, `.liquid` boosts Shopify, `.dart` boosts Flutter
 - Config files → `Dockerfile` boosts DevOps, `*.tf` boosts AWS, `cypress.config.*` boosts testing
-- Full mapping in `agents-manifest.json` → `context_detection`
 
 ## Manual Agent Selection (Still Works)
 
@@ -478,7 +481,7 @@ This agent system integrates with Gemini:
 - **Registry**: `AGENTS.md`
 - **Format**: Markdown with YAML frontmatter
 - **Version**: 1.0.0
-- **Total agents**: 123
+- **Total agents**: See `agents-manifest.json` → `total`
 - **Compatible with**: Gemini Code Assist, Gemini CLI, and all major AI tools
 
 ## Tool Integration
@@ -527,7 +530,8 @@ To create a new agent for Gemini:
    ```
 3. Add detailed system prompt and instructions
 4. Update `AGENTS.md` registry
-5. Commit and available in Gemini CLI immediately
+5. Regenerate the manifest: `python3 scripts/gen-agents-manifest.py`
+6. Commit — available in Gemini CLI immediately
 
 See `AGENTS.md` for agent format specification.
 
@@ -542,7 +546,7 @@ See `AGENTS.md` for agent format specification.
 
 ---
 
-**Last Updated**: 2026-04-07
-**Total Agents**: 123
+**Last Updated**: 2026-04-20
+**Total Agents**: See `agents-manifest.json` → `total`
 **Version**: 1.0.0
 **Compatible Tools**: Gemini CLI, Gemini Code Assist, Claude Code, GitHub Copilot, Cursor, VS Code, Antigravity, OpenCode

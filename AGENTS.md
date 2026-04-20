@@ -1,6 +1,10 @@
 # Universal Agents Registry
 
-This is the universal agent system recognized by Codex (CLI + VSCode), GitHub Copilot, Claude Code, Gemini CLI, Cursor, Antigravity, OpenCode, and all major AI coding tools.
+This is the universal agent system recognized by Codex (CLI + VSCode), GitHub Copilot, Claude Code, Gemini CLI, Cursor, Antigravity, OpenCode, and all major AI coding tools. The current agent count is always in `agents-manifest.json` → `total`.
+
+**Agent discovery**: Read `agents-manifest.json` once to select the right agent, then load only that agent's `.md` file. Do NOT scan the `agents/` folder directly — it contains 100+ files and reading them all wastes significant context and tokens.
+
+**Full agent path**: `./agents/{agent-name}.md` (all files are at the repo root in `agents/`)
 
 ## Quick Start
 
@@ -12,8 +16,6 @@ This is the universal agent system recognized by Codex (CLI + VSCode), GitHub Co
 - **Cursor**: Uses `.cursor/rules/*.mdc` rule files. Agents load contextually based on glob patterns.
 - **Antigravity**: Reads this AGENTS.md automatically (v1.20.3+). Also supports GEMINI.md.
 - **OpenCode**: Reads this AGENTS.md from project root. Use `@agent-name` in chat.
-
-**Full agent path**: `./agents/{agent-name}.md`
 
 ---
 

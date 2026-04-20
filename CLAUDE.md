@@ -2,7 +2,10 @@
 
 ## Universal Agents System
 
-This project contains a system of **123 specialized AI agents** designed to assist with every aspect of software development, design, marketing, operations, and more.
+This project contains a **growing library of specialized AI agents** designed to assist with every aspect of software development, design, marketing, operations, and more. The current agent count is always in `agents-manifest.json` → `total`.
+
+**Agents folder**: `./agents/` at the repo root — all agent `.md` files live here.
+**Do NOT scan this folder directly.** Use `agents-manifest.json` to select an agent first, then load only that one file.
 
 ### What Are Agents?
 
@@ -19,11 +22,11 @@ Agents are **prompt-based experts** that embody specific expertise and personali
 
 #### How Auto-Dispatch Works
 
-1. When you send a message, analyze the task against `agents-manifest.json`
-2. Check the project context (file types, package.json dependencies, directory structure) to narrow candidates
-3. Match your request keywords against agent keywords, descriptions, and categories
-4. Select the best-matching agent (or up to 3 for complex tasks)
-5. Load the agent's full `.md` file from `./agents/` and apply its expertise
+1. **Read `agents-manifest.json` once** — this is the lean index at the repo root. Never scan `agents/` directly; reading 120+ files burns tokens unnecessarily.
+2. Match the task against the `name`, `description`, and `vibe` fields for each agent in the manifest.
+3. Check project context (file types, `package.json` dependencies, config files) to break ties.
+4. Select the best-matching agent (or up to 3 for complex tasks).
+5. Load **only** that agent's full `.md` file using the `file` path from the manifest (e.g. `agents/engineering-code-reviewer.md`).
 
 #### Auto-Dispatch Rules
 
@@ -42,11 +45,10 @@ Before matching keywords, check the project for context signals:
 - `package.json` → Read dependencies to identify the stack (Next.js? React Native? Express?)
 - File extensions in the working directory → `.sql` files boost database agents, `.liquid` boosts Shopify, etc.
 - Config files → `Dockerfile` boosts DevOps, `*.tf` boosts AWS/infrastructure, `cypress.config.*` boosts testing
-- See `agents-manifest.json` → `context_detection` for the full mapping
 
 #### Agent Chains (Multi-Agent Workflows)
 
-For complex tasks, use predefined chains from `agents-manifest.json` → `chains`:
+For complex tasks, use these predefined chains:
 
 - **build_feature** → product-manager → ux-architect → backend-architect → code-reviewer → security-engineer
 - **code_review** → code-reviewer → security-engineer → accessibility-auditor
@@ -175,7 +177,8 @@ To create a new agent:
    ```
 3. Add detailed system prompt and instructions
 4. Update **AGENTS.md** with the new entry
-5. Commit and immediately available in Claude Code
+5. Regenerate the manifest: `python3 scripts/gen-agents-manifest.py`
+6. Commit — immediately available in Claude Code
 
 See **AGENTS.md** for full agent list and format specification.
 
@@ -186,7 +189,7 @@ All configuration is in `.claude/settings.json`:
 - `agentsDir` — Path to agents directory (./agents)
 - `registry` — Main agent registry file (AGENTS.md)
 - `projectInstructions` — This file (CLAUDE.md)
-- `capabilities.agentCount` — Current count (123)
+- `capabilities.agentCount` — Dynamic; see `agents-manifest.json` → `total`
 - `invocationPatterns` — How to invoke agents
 
 ### Tips for Best Results
@@ -221,6 +224,6 @@ For feedback or agent improvements, check AGENTS.md for the version and report i
 ---
 
 **Version**: 1.0.0
-**Last Updated**: 2026-04-07
-**Total Agents**: 123
+**Last Updated**: 2026-04-20
+**Total Agents**: See `agents-manifest.json` → `total`
 **Compatible Tools**: Claude Code, GitHub Copilot, Gemini CLI, Cursor, VS Code, Antigravity, OpenCode
