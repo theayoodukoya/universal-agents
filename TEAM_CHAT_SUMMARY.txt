@@ -1,0 +1,31 @@
+UNIVERSAL AGENTS — 123-AGENT AI SYSTEM
+
+Unified system that auto-selects the right expert across 7 IDEs: Claude Code, GitHub Copilot, Cursor, VS Code, Gemini CLI, Codex, Antigravity, OpenCode.
+
+123 AGENTS BY CATEGORY:
+Engineering: 31 (architecture, backend, frontend, databases, DevOps, security, AI/ML)
+Design: 9 (UX/UI, visual design, accessibility, Figma-to-Code, design systems)
+Testing: 8 (QA, E2E, accessibility, performance)
+Marketing: 13 (content, SEO, growth, campaigns, analytics)
+Product & Operations: 11 (strategy, prioritisation, analytics, compliance)
+Shopify: 3 (Liquid, themes, platform)
+Specialized: 18 (debugging, blockchain, AI, MCP, Salesforce, security)
+
+KEY FEATURES:
+Auto-dispatch: describe your task, AI selects the right agent
+Full-stack debugger: RIPF methodology with parallel hypothesis testing
+Merge-safe installation: doesn't overwrite existing configs
+Agent discovery: fuzzy search and category browsing
+
+INSTALL:
+curl -fsSL https://raw.githubusercontent.com/theayoodukoya/universal-agents/main/install.sh | bash
+
+COMMANDS:
+update-agents (latest version)
+remove-agents (clean removal)
+./agent-pick.sh (agent discovery)
+
+WHAT WE DID:
+Transformed 113 unvetted agents into 123 curated agents. Fixed security vulnerabilities, removed hardcoded paths, consolidated 3 Shopify agents, added 12 new specialists (Next.js, BigQuery, AWS, React Native, Flutter, Figma-to-Code, E2E, accessibility, patterns, CI/CD, debugging, ideation). Built machine-readable manifest, tool configs, merge-safe installer.
+
+REPOSITORY: https://github.com/theayoodukoya/universal-agents
